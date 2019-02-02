@@ -13,6 +13,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sheridan.Core.Enumerations;
 
 namespace Sheridan.Flyball.Core.Enumerations
 {
