@@ -3,7 +3,7 @@ using Sheridan.Flyball.Core.Entities;
 
 namespace Sheridan.Flyball.Core.Interfaces.Repository
 {
-    public interface IDogPositionRepository : IRepository<DogPosition>
+    public interface IDogPositionRepository : IRepositoryInt<DogPosition>
     {
         
     }

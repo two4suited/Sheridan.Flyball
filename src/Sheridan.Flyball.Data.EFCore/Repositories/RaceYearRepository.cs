@@ -6,7 +6,7 @@ using Sheridan.Flyball.Core.Interfaces.Repository;
 
 namespace Sheridan.Flyball.Data.EFCore.Repositories
 {
-    public class RaceYearRepository : Repository<RaceYear>,IRaceYearRepository
+    public class RaceYearRepository : RepositoryInt<RaceYear>,IRaceYearRepository
     {
         private readonly FlyballDbContext _dbContext;
 

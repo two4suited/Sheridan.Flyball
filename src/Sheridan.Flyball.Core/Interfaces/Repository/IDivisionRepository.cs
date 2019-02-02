@@ -4,7 +4,7 @@ using Sheridan.Flyball.Core.Entities;
 
 namespace Sheridan.Flyball.Core.Interfaces.Repository
 {
-    public interface IDivisionRepository : IRepository<Division>
+    public interface IDivisionRepository : IRepositoryInt<Division>
     {
         IList<Team> GetTeamsInDivision(int divisionId);
     }

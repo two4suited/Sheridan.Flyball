@@ -4,7 +4,7 @@ using Sheridan.Flyball.Core.Entities;
 
 namespace Sheridan.Flyball.Core.Interfaces.Repository
 {
-    public interface ITournamentRepository : IRepository<Tournament>
+    public interface ITournamentRepository : IRepositoryInt<Tournament>
     {
         IList<Division> GetDivisions(int tournamentId);
         IList<Race> GetListOfRacesInOrder(int tournamentId);

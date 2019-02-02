@@ -4,7 +4,7 @@ using Sheridan.Flyball.Core.Entities;
 
 namespace Sheridan.Flyball.Core.Interfaces.Repository
 {
-    public interface IRaceYearRepository : IRepository<RaceYear>
+    public interface IRaceYearRepository : IRepositoryInt<RaceYear>
     {
         IList<Tournament> GetListOfTournaments(string raceYear);
     }

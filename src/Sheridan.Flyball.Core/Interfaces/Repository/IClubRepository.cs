@@ -4,7 +4,7 @@ using Sheridan.Flyball.Core.Entities;
 
 namespace Sheridan.Flyball.Core.Interfaces.Repository
 {
-    public interface IClubRepository : IRepository<Club>
+    public interface IClubRepository : IRepositoryInt<Club>
     {
        
         IList<Person> GetPeople(int clubId);

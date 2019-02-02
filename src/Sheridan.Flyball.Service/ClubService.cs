@@ -1,6 +1,7 @@
 ﻿using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Interfaces.Repository;
 using Sheridan.Flyball.Core.Interfaces.Services;
+using Sheridan.Flyball.Core.ViewModels.Create;
 
 namespace Sheridan.Flyball.Service
 {
@@ -20,23 +21,20 @@ namespace Sheridan.Flyball.Service
             _dogRepository = dogRepository;
         }
 
-        public Club CreateClub(Club club)
+
+        public Club CreateClub(CreateClubModel club)
         {
-            return _clubRepository.Add(club);
+            throw new System.NotImplementedException();
         }
 
-        public Person CreatePerson(int clubId, Person person)
+        public Person CreatePerson(CreatePersonModel person)
         {
-            person.ClubId = clubId;
-
-            return _personRepository.Add(person);
+            throw new System.NotImplementedException();
         }
 
-        public Dog CreateDog(int personId, Dog dog)
+        public Dog CreateDog(CreateDogModel dog)
         {
-            dog.PersonId = personId;
-
-            return _dogRepository.Add(dog);
+            throw new System.NotImplementedException();
         }
     }
 }

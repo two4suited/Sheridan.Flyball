@@ -4,7 +4,7 @@ using Sheridan.Flyball.Core.Entities;
 
 namespace Sheridan.Flyball.Core.Interfaces.Repository
 {
-    public interface IRaceRepository : IRepository<Race>
+    public interface IRaceRepository : IRepositoryInt<Race>
     {
         IList<Heat> GetListOfHeats(int raceId);
     }

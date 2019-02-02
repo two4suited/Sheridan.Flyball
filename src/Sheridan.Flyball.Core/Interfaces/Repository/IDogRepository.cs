@@ -4,7 +4,7 @@ using Sheridan.Flyball.Core.Entities;
 
 namespace Sheridan.Flyball.Core.Interfaces.Repository
 {
-    public interface IDogRepository : IRepository<Dog>
+    public interface IDogRepository : IRepositoryInt<Dog>
     {
         double FastestTimeInStart(int dogId);
         double FastestTimeInPack(int dogId);

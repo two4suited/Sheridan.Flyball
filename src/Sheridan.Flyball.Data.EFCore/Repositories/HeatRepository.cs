@@ -8,7 +8,7 @@ using Sheridan.Flyball.Core.Interfaces.Repository;
 
 namespace Sheridan.Flyball.Data.EFCore.Repositories
 {
-    public class HeatRepository : Repository<Heat>,IHeatRepository
+    public class HeatRepository : RepositoryInt<Heat>,IHeatRepository
     {
         private readonly FlyballDbContext _dbContext;
 

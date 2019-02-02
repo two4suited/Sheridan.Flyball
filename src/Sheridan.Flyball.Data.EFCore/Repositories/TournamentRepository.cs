@@ -7,7 +7,7 @@ using Sheridan.Flyball.Core.Interfaces.Repository;
 
 namespace Sheridan.Flyball.Data.EFCore.Repositories
 {
-    public class TournamentRepository : Repository<Tournament>,ITournamentRepository
+    public class TournamentRepository : RepositoryInt<Tournament>,ITournamentRepository
     {
         private readonly FlyballDbContext _dbContext;
 

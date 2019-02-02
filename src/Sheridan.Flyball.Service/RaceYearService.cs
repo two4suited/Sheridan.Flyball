@@ -31,7 +31,7 @@ namespace Sheridan.Flyball.Service
 
         public RaceYear GetRaceYearById(int id)
         {
-            return null// _raceYearRepository.(id);
+            return _raceYearRepository.GetById(id);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using FlyballStatTracker.Data.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Sheridan.Data.EntityFramework;
@@ -8,7 +9,7 @@ using Sheridan.Flyball.Core.Interfaces.Repository;
 
 namespace Sheridan.Flyball.Data.EFCore.Repositories
 {
-    public class ClubRepository : Repository<Club>,IClubRepository
+    public class ClubRepository : RepositoryInt<Club>,IClubRepository
     {
         private readonly FlyballDbContext _dbContext;
 
@@ -47,5 +48,7 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
 
             return time;
         }
+
+        
     }
 }

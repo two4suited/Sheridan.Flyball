@@ -5,7 +5,7 @@ using Sheridan.Flyball.Core.Interfaces.Repository;
 
 namespace Sheridan.Flyball.Data.EFCore.Repositories
 {
-    public class DogRunRepository : Repository<DogRun>, IDogRunRepository
+    public class DogRunRepository : RepositoryInt<DogRun>, IDogRunRepository
     {
         private readonly FlyballDbContext _dbContext;
 
