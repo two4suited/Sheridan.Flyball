@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Sheridan.Data.EntityFramework.Extensions;
 using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Enumerations;
