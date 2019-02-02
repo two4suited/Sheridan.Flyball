@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using FlyballStatTracker.Data.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Sheridan.Flyball.Core.Entities;
@@ -57,11 +58,32 @@ namespace Sheridan.Flyball.Data.EFCore.Tests
             {
                 Id = 1,
                 ClubId = clubId,
-                FirstName = "Brian",
-                LastName = "Sheridan"
+                FirstName = RandomString(),
+                LastName = RandomString()
             };
             return person;
         }
+
+        public static Dog SetupDog(int personId)
+        {
+            return new Dog()
+            {
+                Id = 1,
+                NafaCrn = "1",
+                PersonId = personId
+            };
+        }
+
+        public static string RandomString()
+        {
+
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            var list = Enumerable.Repeat(0, 8).Select(x => chars[random.Next(chars.Length)]);
+            return string.Join("", list);
+        }
+
+        
 
         public static List<DogRun> SetupDogRun(DogRun[] dogRuns)
         {

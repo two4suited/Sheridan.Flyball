@@ -46,39 +46,39 @@ namespace Sheridan.Flyball.Data.EFCore.Tests
             }
         }
 
-        [Theory]
-        [InlineAutoData()]
-        public void GetListofTeams_ShouldReturnSameAmount(Tournament tournament)
-        {
-            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var context = TestHelper.SetupContext(methodName);
+        //[Theory]
+        //[InlineAutoData()]
+        //public void GetListofTeams_ShouldReturnSameAmount(Tournament tournament)
+        //{
+        //    var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+        //    var context = TestHelper.SetupContext(methodName);
             
-            var tournamentRepo = new TournamentRepository(context);
+        //    var tournamentRepo = new TournamentRepository(context);
             
-            tournamentRepo.Add(tournament);
+        //    tournamentRepo.Add(tournament);
 
-            var teams = tournament.Teams;
-            var teamsRepo = tournamentRepo.GetListOfTeams(tournament.Id);
+        //    var teams = tournament.Teams;
+        //    var teamsRepo = tournamentRepo.GetListOfTeams(tournament.Id);
 
-            teams.Count.ShouldBe(teamsRepo.Count);
-        }
+        //    teams.Count.ShouldBe(teamsRepo.Count);
+        //}
 
-        [Theory]
-        [InlineAutoData()]
-        public void GetListOfDivisions_ShouldReturnSameAmount(Tournament tournament)
-        {
-            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var context = TestHelper.SetupContext(methodName);
+        //[Theory]
+        //[InlineAutoData()]
+        //public void GetListOfDivisions_ShouldReturnSameAmount(Tournament tournament)
+        //{
+        //    var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+        //    var context = TestHelper.SetupContext(methodName);
 
-            var tournamentRepo = new TournamentRepository(context);
+        //    var tournamentRepo = new TournamentRepository(context);
 
-            tournamentRepo.Add(tournament);
+        //    tournamentRepo.Add(tournament);
 
-            var division = tournament.Divisions;
-            var divisionRepo = tournamentRepo.GetDivisions(tournament.Id);
+        //    var division = tournament.Divisions;
+        //    var divisionRepo = tournamentRepo.GetDivisions(tournament.Id);
 
-            division.Count.ShouldBe(divisionRepo.Count);
-        }
+        //    division.Count.ShouldBe(divisionRepo.Count);
+        //}
 
     }
 }

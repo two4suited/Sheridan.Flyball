@@ -37,7 +37,7 @@ namespace Sheridan.Flyball.Data.EFCore.Tests
 
             var tournament = TestHelper.SetupTournament();
             
-            tournamentRepo.Add(tournament);
+            tournamentRepo.AddAndSave(tournament);
 
             var time = dogRepo.FastestTimeInStart(dogId);
 
@@ -57,7 +57,7 @@ namespace Sheridan.Flyball.Data.EFCore.Tests
 
             var tournament = TestHelper.SetupTournament();
 
-            tournamentRepo.Add(tournament);
+            tournamentRepo.AddAndSave(tournament);
 
             var time = dogRepo.FastestTimeInPack(dogId);
 

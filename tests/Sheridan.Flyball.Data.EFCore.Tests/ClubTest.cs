@@ -17,86 +17,98 @@ namespace Sheridan.Flyball.Data.EFCore.Tests
             TestHelper.AddOne_ThenOne(club,typeof(Club).Name);
         }
 
-        
 
-        [Theory]
-        [InlineAutoData()]
-        public void GetPerson_ThenReturnRightNumberOfPeople(Club club)
+        [Fact]
+        public void GetPerson_ThenReturnRightNumberOfPeople()
         {
+            int numberOfPeople = 3;
+
             var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
 
             var repo = new ClubRepository(TestHelper.SetupContext(methodName));
 
-            repo.Add(club);
+            var club = TestHelper.SetupClub();
 
-            var people = repo.GetPeople(club.Id);
+            for (int i = 1; i <= numberOfPeople; i++)
+            {
+                var p1 = new Person() { ClubId = club.Id, Id = i, FirstName = TestHelper.RandomString(), LastName = TestHelper.RandomString() };
+                club.AddPerson(p1);
+            }
 
-            people.Count.ShouldBe(club.People.Count);
-        }
+            repo.AddAndSave(club);
 
-        [Theory]
-        [InlineAutoData()]
-        public void GetPeopleWithDogs_ThenReturnRightNumberOfDogs(Club club)
-        {
-            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-            var repo = new ClubRepository(TestHelper.SetupContext(methodName));
-
-            repo.Add(club);
-
-            var people = repo.GetPeopleWithDogs(club.Id);
-
-            var totalDogs = club.People.SelectMany(x => x.Dogs).Count();
-            var totalDogsDb = people.SelectMany(x => x.Dogs).Count();
-
-            totalDogsDb.ShouldBe(totalDogs);
+            repo.GetPeople(club.Id).Count.ShouldBe(numberOfPeople);
             
 
-        }
-
-        [Theory]
-        [InlineAutoData()]
-        public void GetDogs_NumberOfDogsInModel_MatchesDatabase(Club club)
-        {
-            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var repo = new ClubRepository(TestHelper.SetupContext(methodName));
-
-            repo.Add(club);
-
-            var dogsRepo = repo.GetDogs(club.Id);
-
-            var dogs = club.People.SelectMany(x => x.Dogs);
-
-            dogsRepo.Count.ShouldBe(dogs.Count());
-            
         }
 
         [Fact]
-        public void GetFastestTime_SetupTournament_GetFastestTime()
+        public void GetDogs_NumberOfDogsInModel_MatchesDatabase()
         {
+            int numberOfDogs = 8;
+
             var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var context = TestHelper.SetupContext(methodName);
+            var repo = new ClubRepository(TestHelper.SetupContext(methodName));
 
+            var club = TestHelper.SetupClub();
 
-            var repoTournament = new TournamentRepository(context);
-            var repoClub = new ClubRepository(context);
+            var p1 =  new Person(){ClubId = club.Id,Id = 1,FirstName = TestHelper.RandomString(),LastName = TestHelper.RandomString()};
+            var p2 = new Person() { ClubId = club.Id, Id = 2, FirstName = TestHelper.RandomString(), LastName = TestHelper.RandomString() };
 
-            var tournament = TestHelper.SetupTournament();
-            repoTournament.Add(tournament);
+            for (int i = 1; i <= numberOfDogs; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    Dog d = new Dog() {Id = i, PersonId = p1.Id, NafaCrn = i.ToString()};
+                    p1.AddDog(d);
+                }
+                else
+                {
+                    Dog d = new Dog() { Id = i, PersonId = p2.Id, NafaCrn = i.ToString() };
+                    p2.AddDog(d);
+                }
+            }
+        
+            club.AddPerson(p1);
+            club.AddPerson(p2);
+
+            repo.AddAndSave(club);
             
 
-            var tournaments = new List<Tournament> {tournament};
+            var dogsRepo = repo.GetDogs(club.Id);
 
-            var randomClubId = tournaments.SelectMany(x => x.Teams).Select(x => x.Club).First().Id;
-            tournaments[0].Races[0].Team.Club.Id = randomClubId;
-            var repoTime = repoClub.GetTeamsFastestTime(randomClubId);
             
-            var races = tournaments.SelectMany(x => x.Races).Where(c => c.Team.Club.Id == randomClubId);
-            var time = races.SelectMany(x => x.Heats).Min(x => x.HeatTime);
 
-            time.ShouldBe(repoTime);
-
+            dogsRepo.Count.ShouldBe(numberOfDogs);
+            
         }
+
+        //[Fact]
+        //public void GetFastestTime_SetupTournament_GetFastestTime()
+        //{
+        //    var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+        //    var context = TestHelper.SetupContext(methodName);
+
+
+        //    var repoTournament = new TournamentRepository(context);
+        //    var repoClub = new ClubRepository(context);
+
+        //    var tournament = TestHelper.SetupTournament();
+        //    repoTournament.AddAndSave(tournament);
+            
+
+        //    var tournaments = new List<Tournament> {tournament};
+
+        //    var randomClubId = tournaments.SelectMany(x => x.Teams).Select(x => x.Club).First().Id;
+        //    tournaments[0].Races[0].Team.Club.Id = randomClubId;
+        //    var repoTime = repoClub.GetTeamsFastestTime(randomClubId);
+            
+        //    var races = tournaments.SelectMany(x => x.Races).Where(c => c.Team.Club.Id == randomClubId);
+        //    var time = races.SelectMany(x => x.Heats).Min(x => x.HeatTime);
+
+        //    time.ShouldBe(repoTime);
+
+        //}
 
 
 

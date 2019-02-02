@@ -24,7 +24,7 @@ namespace Sheridan.Flyball.Data.EFCore.Tests
             var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
             var context = TestHelper.SetupContext(methodName);
             var personRepo = new PersonRepository(context);
-            personRepo.Add(person);
+            personRepo.AddAndSave(person);
 
             //Pull Data out of object
             var dogs = person.Dogs;

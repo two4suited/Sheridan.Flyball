@@ -17,22 +17,22 @@ namespace Sheridan.Flyball.Data.EFCore.Tests
 
         }
 
-        [Theory]
-        [InlineAutoData()]
-        public void GetListOfDogs_NumberOfDogsShouldMatch(Team team)
-        {
-            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var context = TestHelper.SetupContext(methodName);
+        //[Theory]
+        //[InlineAutoData()]
+        //public void GetListOfDogs_NumberOfDogsShouldMatch(Team team)
+        //{
+        //    var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+        //    var context = TestHelper.SetupContext(methodName);
 
-            var teamRepo = new TeamRepository(context);
+        //    var teamRepo = new TeamRepository(context);
 
-            teamRepo.Add(team);
+        //    teamRepo.Add(team);
 
-            var dogs = team.Dogs;
-            var dogsRepo = teamRepo.GetListOfDogs(team.Id);
+        //    var dogs = team.Dogs;
+        //    var dogsRepo = teamRepo.GetListOfDogs(team.Id);
 
-            dogs.Count.ShouldBe(dogsRepo.Count);
-        }
+        //    dogs.Count.ShouldBe(dogsRepo.Count);
+        //}
 
         [Theory]
         [InlineAutoData()]
