@@ -1,4 +1,5 @@
-﻿using Sheridan.Flyball.Core.Entities;
+﻿using System.ComponentModel;
+using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Interfaces.Repository;
 using Sheridan.Flyball.Core.Interfaces.Services;
 using Sheridan.Flyball.Core.ViewModels.Create;
@@ -22,14 +23,19 @@ namespace Sheridan.Flyball.Service
         }
 
 
-        public Club CreateClub(CreateClubModel club)
+        public Club CreateClub(CreateClubModel newClub)
         {
-            throw new System.NotImplementedException();
+            var club = new Club() {NafaClubNumber = newClub.NafaClubNumber, Name = newClub.Name};
+
+            return _clubRepository.AddAndSave(club);
         }
 
-        public Person CreatePerson(CreatePersonModel person)
+        public Person CreatePerson(CreatePersonModel newPerson)
         {
-            throw new System.NotImplementedException();
+            var person = new Person()
+                {ClubId = newPerson.ClubId, LastName = newPerson.FirstName, FirstName = newPerson.LastName};
+
+            return _personRepository.AddAndSave(person);
         }
 
         public Dog CreateDog(CreateDogModel dog)
