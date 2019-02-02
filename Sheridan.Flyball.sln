@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheridan.Flyball.Data.EFCor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sheridan.Flyball.Core.Tests", "tests\Sheridan.Flyball.Core.Tests\Sheridan.Flyball.Core.Tests.csproj", "{E3EB4DFE-B102-4B39-B936-27DFA85FD812}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheridan.Flyball.Service", "src\Sheridan.Flyball.Service\Sheridan.Flyball.Service.csproj", "{E0198A35-0DE1-4461-8843-7BA7415504E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{E3EB4DFE-B102-4B39-B936-27DFA85FD812}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3EB4DFE-B102-4B39-B936-27DFA85FD812}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3EB4DFE-B102-4B39-B936-27DFA85FD812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0198A35-0DE1-4461-8843-7BA7415504E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0198A35-0DE1-4461-8843-7BA7415504E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0198A35-0DE1-4461-8843-7BA7415504E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0198A35-0DE1-4461-8843-7BA7415504E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
