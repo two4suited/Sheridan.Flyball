@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\src\Sheridan.Flyball.Core\Sheridan.Flyball.Core.csproj" />
     <ProjectReference Include="..\..\src\Sheridan.Flyball.Data.EFCore\Sheridan.Flyball.Data.EFCore.csproj" />
     <ProjectReference Include="..\..\src\Sheridan.Flyball.Service\Sheridan.Flyball.Service.csproj" />

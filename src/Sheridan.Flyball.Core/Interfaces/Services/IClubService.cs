@@ -6,8 +6,8 @@ namespace Sheridan.Flyball.Core.Interfaces.Services
     public interface IClubService
     {
         Club CreateClub(CreateClubModel club);
-        Person CreatePerson(CreatePersonModel person);
-        Dog CreateDog(CreateDogModel dog);
+        Club CreatePerson(CreatePersonModel person);
+        Person CreateDog(CreateDogModel dog);
 
     }
 }

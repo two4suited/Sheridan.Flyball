@@ -23,12 +23,12 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
 
         public IList<Person> GetPeople(int clubId)
         {
-            return _dbContext.Clubs.Include(x => x.People).Single(x => x.Id == clubId).People;
+            return _dbContext.Clubs.Include(x => x.People).Single(x => x.Id == clubId).People.ToList();
         }
 
         public IList<Person> GetPeopleWithDogs(int clubId)
         {
-            return _dbContext.Clubs.Include(x => x.People).ThenInclude(x => x.Dogs).Single(x => x.Id == clubId).People;
+            return _dbContext.Clubs.Include(x => x.People).ThenInclude(x => x.Dogs).Single(x => x.Id == clubId).People.ToList();
         }
 
         public IList<Dog> GetDogs(int clubId)

@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using AutoFixture.Xunit2;
+using Moq;
 using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Interfaces.Repository;
 using Sheridan.Flyball.Core.ViewModels.Create;
@@ -48,6 +49,22 @@ namespace Sheridan.Flyball.Service.Tests
             person.ClubId.ShouldBe(newPerson.ClubId);
             person.FirstName.ShouldBe(newPerson.FirstName);
             person.LastName.ShouldBe(newPerson.LastName);
+        }
+
+        [Theory]
+        [InlineAutoData()]
+        public void CreatePerson_PersonOnClub(Club club, Person person)
+        {
+            var newPerson = new CreatePersonModel()
+                {ClubId = club.Id, FirstName = person.FirstName, LastName = person.LastName};
+
+            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            var helper = new TestHelper(methodName);
+
+            var sut = new ClubService(helper.SetupClubRepository(),helper.SetupPersonRepository(),helper.SetupDogRepository());
+
+
+
         }
         //[Fact]
         //public void CreateDog_ValidMapping()

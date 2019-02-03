@@ -15,7 +15,8 @@ namespace Sheridan.Flyball.Service
         public ClubService(
             IClubRepository clubRepository,
             IPersonRepository personRepository,
-            IDogRepository dogRepository)
+            IDogRepository dogRepository
+          )
         {
             _clubRepository = clubRepository;
             _personRepository = personRepository;
@@ -25,20 +26,22 @@ namespace Sheridan.Flyball.Service
 
         public Club CreateClub(CreateClubModel newClub)
         {
-            var club = new Club() {NafaClubNumber = newClub.NafaClubNumber, Name = newClub.Name};
+            var club = CreateClubModel.ToClub(newClub);
 
             return _clubRepository.AddAndSave(club);
         }
 
-        public Person CreatePerson(CreatePersonModel newPerson)
+        public Club CreatePerson(CreatePersonModel newPerson)
         {
-            var person = new Person()
-                {ClubId = newPerson.ClubId, LastName = newPerson.FirstName, FirstName = newPerson.LastName};
+            var club = _clubRepository.GetById(newPerson.ClubId);
+            var person = CreatePersonModel.ToPerson(newPerson);
 
-            return _personRepository.AddAndSave(person);
+            club.AddPerson(person);
+
+            return _clubRepository.UpdateAndSave(club);
         }
 
-        public Dog CreateDog(CreateDogModel dog)
+        public Person CreateDog(CreateDogModel dog)
         {
             throw new System.NotImplementedException();
         }
