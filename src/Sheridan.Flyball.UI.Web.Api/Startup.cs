@@ -19,6 +19,7 @@ using Sheridan.Flyball.Core.ViewModels.Validators;
 using Sheridan.Flyball.Data.EFCore.Repositories;
 using Sheridan.Flyball.Service;
 using Sheridan.Flyball.UI.Web.Api.Configuration;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Sheridan.Flyball.UI.Web.Api
 {
@@ -35,6 +36,11 @@ namespace Sheridan.Flyball.UI.Web.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Flyball API", Version = "v1" });
+            });
 
             services.AddDbContext<FlyballDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("FlyballDatabase")));
 
@@ -62,6 +68,16 @@ namespace Sheridan.Flyball.UI.Web.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Flyball Api V1");
+            });
+
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetService<FlyballDbContext>();
