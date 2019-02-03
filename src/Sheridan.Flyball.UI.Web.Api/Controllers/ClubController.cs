@@ -28,8 +28,6 @@ namespace Sheridan.Flyball.UI.Web.Api.Controllers
         [Route("createclub")]
         public async Task<IActionResult> CreateClub(CreateClubModel newClub)
         {
-            if(!ModelState.IsValid) return new BadRequestObjectResult(newClub);
-
             return new OkObjectResult(await _clubService.CreateClub(newClub));
         }
     }
