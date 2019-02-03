@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using FlyballStatTracker.Data.EfCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sheridan.Flyball.Core.Interfaces.Repository;
 using Sheridan.Flyball.Core.Interfaces.Services;
+using Sheridan.Flyball.Core.ViewModels.Validators;
 using Sheridan.Flyball.Data.EFCore.Repositories;
 using Sheridan.Flyball.Service;
 using Sheridan.Flyball.UI.Web.Api.Configuration;
@@ -52,7 +54,9 @@ namespace Sheridan.Flyball.UI.Web.Api
             services.AddTransient<IClubService, ClubService>();
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateClubModelValidator>()); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

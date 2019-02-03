@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Sheridan.Flyball.Core.Interfaces.Services;
+using Sheridan.Flyball.Core.ViewModels.Create;
 using Sheridan.Flyball.UI.Web.Api.Configuration;
 
 namespace Sheridan.Flyball.UI.Web.Api.Controllers
@@ -24,5 +25,12 @@ namespace Sheridan.Flyball.UI.Web.Api.Controllers
         }
 
         [HttpPost]
+        [Route("createclub")]
+        public async Task<IActionResult> CreateClub(CreateClubModel newClub)
+        {
+            if(!ModelState.IsValid) return new BadRequestObjectResult(newClub);
+
+            return new OkObjectResult(await _clubService.CreateClub(newClub));
+        }
     }
 }

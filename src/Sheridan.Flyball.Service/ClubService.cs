@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Interfaces.Repository;
 using Sheridan.Flyball.Core.Interfaces.Services;
@@ -24,24 +25,24 @@ namespace Sheridan.Flyball.Service
         }
 
 
-        public Club CreateClub(CreateClubModel newClub)
+        public async Task<Club> CreateClub(CreateClubModel newClub)
         {
             var club = CreateClubModel.ToClub(newClub);
 
-            return _clubRepository.AddAndSave(club);
+            return await _clubRepository.AddAndSaveAsync(club);
         }
 
-        public Club CreatePerson(CreatePersonModel newPerson)
+        public async Task<Club> CreatePerson(CreatePersonModel newPerson)
         {
             var club = _clubRepository.GetById(newPerson.ClubId);
             var person = CreatePersonModel.ToPerson(newPerson);
 
             club.AddPerson(person);
 
-            return _clubRepository.UpdateAndSave(club);
+            return await _clubRepository.UpdateAndSaveAsync(club);
         }
 
-        public Person CreateDog(CreateDogModel dog)
+        public async Task<Person> CreateDog(CreateDogModel dog)
         {
             throw new System.NotImplementedException();
         }

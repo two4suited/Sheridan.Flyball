@@ -25,7 +25,7 @@ namespace Sheridan.Flyball.Tests.Integration.Services
 
             var sut = new ClubService(inMemorySetup.ClubRepository(), inMemorySetup.PersonRepository(), inMemorySetup.DogRepository());
 
-            var results = sut.CreateClub(newClub);
+            var results = sut.CreateClub(newClub).Result;
 
             results.NafaClubNumber.ShouldBe(newClub.NafaClubNumber);
             results.Name.ShouldBe(newClub.Name);
@@ -44,7 +44,7 @@ namespace Sheridan.Flyball.Tests.Integration.Services
 
             var sut = new ClubService(inMemorySetup.ClubRepository(), inMemorySetup.PersonRepository(), inMemorySetup.DogRepository());
 
-            var results = sut.CreatePerson(newPerson);
+            var results = sut.CreatePerson(newPerson).Result;
 
             results.People.Count().ShouldBe(1);
 

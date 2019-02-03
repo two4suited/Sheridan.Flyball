@@ -10,6 +10,7 @@ namespace Sheridan.Flyball.Core.ViewModels.Create
         public int NafaClubNumber { get; set; }
         public string Name { get; set; }
 
+        
         public static Club ToClub(CreateClubModel newClub)
         {
             return new Club() { NafaClubNumber = newClub.NafaClubNumber, Name = newClub.Name };
