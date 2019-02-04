@@ -7,18 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.HttpsPolicy" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="Shouldly" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.1" />
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.8.0" />
+    <PackageReference Include="Shouldly" Version="3.0.2" />
+    <PackageReference Include="xunit.runner.console" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.2.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.1" />
-    <PackageReference Include="AutoFixture.Xunit2" Version="4.8.0" />
-    <PackageReference Include="Shouldly" Version="3.0.2" />
-    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +38,7 @@
     <ProjectReference Include="..\..\src\Sheridan.Flyball.Core\Sheridan.Flyball.Core.csproj" />
     <ProjectReference Include="..\..\src\Sheridan.Flyball.Data.EFCore\Sheridan.Flyball.Data.EFCore.csproj" />
     <ProjectReference Include="..\..\src\Sheridan.Flyball.Service\Sheridan.Flyball.Service.csproj" />
+    <ProjectReference Include="..\..\src\Sheridan.Flyball.UI.Web.Api\Sheridan.Flyball.UI.Web.Api.csproj" />
   </ItemGroup>
 
 </Project>
