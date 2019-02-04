@@ -12,8 +12,3 @@ This program hopes to track the following items.
 * What happened on each heat
 * Statistics about your dogs from all the heat information
 
-## Commands For EF
-dotnet restore
-dotnet build
-dotnet ef migrations database update
-dotnet ef database update
