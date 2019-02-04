@@ -182,18 +182,18 @@ namespace Sheridan.Flyball.Tests.Core
 
             vut.Dog.ShouldBe(dog3);
         }
-        [Theory, InlineAutoData()]
-        public void AddTime_WhenThirdDog_ThenReturnsFourthPosition(Division division,
-            Heat heat, Dog dog1, Dog dog2, Dog dog3, Dog dog4, Fault fault, double time)
-        {
-            division.RacingClass = RacingClass.Regular;
-            heat.AddDogToLineup(division,dog1, dog2, dog3, dog4);
-            fault = null;
+        //[Theory, InlineAutoData()]
+        //public void AddTime_WhenThirdDog_ThenReturnsFourthPosition(Division division,
+        //    Heat heat, Dog dog1, Dog dog2, Dog dog3, Dog dog4, Fault fault, double time)
+        //{
+        //    division.RacingClass = RacingClass.Regular;
+        //    heat.AddDogToLineup(division,dog1, dog2, dog3, dog4);
+        //    fault = null;
 
-            var vut = heat.AddTime(dog3, Position.Third, time, fault, division);
+        //    var vut = heat.AddTime(dog3, Position.Third, time, fault, division);
 
-            vut.Position.ShouldBe(Position.Fourth);
-        }
+        //    vut.Position.ShouldBe(Position.Fourth);
+        //}
         [Theory, InlineAutoData()]
         public void AddTime_AddThirdDog_ThenReturnsFourthDogInLineup(Division division,
             Heat heat, Dog dog1, Dog dog2, Dog dog3, Dog dog4, Fault fault, double time)
