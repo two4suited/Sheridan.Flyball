@@ -34,7 +34,18 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
         }
 
         [Fact]
-        public void CreatePerson_Return404_GivenClubNotExist()
+        public void CreatePerson_Return400GivenInvalidRequest()
+        {
+            var createNewPerson = new CreatePersonModel() { ClubId = 1, FirstName = "", LastName = "T" };
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(createNewPerson), Encoding.UTF8, "application/json");
+
+            var response = _client.PostAsync("/api/club/createperson", jsonContent).Result;
+
+            response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
+        }
+
+        [Fact]
+        public void CreatePerson_Return400_GivenClubNotExist()
         {
             var createNewPerson = new CreatePersonModel() { ClubId=1,FirstName="Test",LastName="T" };
             var jsonContent = new StringContent(JsonConvert.SerializeObject(createNewPerson), Encoding.UTF8, "application/json");
