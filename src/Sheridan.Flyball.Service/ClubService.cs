@@ -36,7 +36,7 @@ namespace Sheridan.Flyball.Service
         {
             var club = _clubRepository.GetById(newPerson.ClubId);
 
-            //if (club == null) return null;
+            if (club == null) return null;
 
             var person = CreatePersonModel.ToPerson(newPerson);
 

@@ -30,5 +30,14 @@ namespace Sheridan.Flyball.UI.Web.Api.Controllers
         {
             return new OkObjectResult(await _clubService.CreateClub(newClub));
         }
+        [HttpPost]
+        [Route("createperson")]
+        public async Task<IActionResult> CreatePerson(CreatePersonModel newPerson)
+        {
+            var club = await _clubService.CreatePerson(newPerson);
+
+            if (club == null) return BadRequest("The Club Id was not found");
+            return new OkObjectResult(club);
+        }
     }
 }
