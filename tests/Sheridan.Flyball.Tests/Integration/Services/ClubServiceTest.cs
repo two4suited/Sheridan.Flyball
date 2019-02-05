@@ -49,6 +49,26 @@ namespace Sheridan.Flyball.Tests.Integration.Services
             results.People.Count().ShouldBe(1);
 
         }
+
+        [Theory]
+        [InlineAutoData()]
+        public void CreatePerson_ClubDoesNotExists_ReturnsNull(CreatePersonModel newPerson)
+        {
+            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            var inMemorySetup = new InMemoryDbSetup(methodName);
+
+            var club = ModelSetup.SetupClub();
+            newPerson.ClubId = club.Id+1;
+            inMemorySetup.ClubRepository().AddAndSave(club);
+
+            var sut = new ClubService(inMemorySetup.ClubRepository(), inMemorySetup.PersonRepository(), inMemorySetup.DogRepository());
+
+            var results = sut.CreatePerson(newPerson).Result;
+
+            results.ShouldBeNull();
+
+        }
+
         //[Fact]
         //public void CreateDog_ValidMapping()
         //{

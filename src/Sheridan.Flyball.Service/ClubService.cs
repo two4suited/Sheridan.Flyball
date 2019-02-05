@@ -35,6 +35,9 @@ namespace Sheridan.Flyball.Service
         public async Task<Club> CreatePerson(CreatePersonModel newPerson)
         {
             var club = _clubRepository.GetById(newPerson.ClubId);
+
+            //if (club == null) return null;
+
             var person = CreatePersonModel.ToPerson(newPerson);
 
             club.AddPerson(person);
