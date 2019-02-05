@@ -41,7 +41,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
 
             var response = _client.PostAsync("/api/club/createperson", jsonContent).Result;
 
-            response.StatusCode.ShouldBe(HttpStatusCode.NotFound);
+            response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
         }
 
         [Fact]

@@ -50,43 +50,25 @@ namespace Sheridan.Flyball.Tests.Integration.Services
 
         }
 
-        //[Theory]
-        //[InlineAutoData()]
-        //public void CreatePerson_ClubDoesNotExists_ReturnsNull(CreatePersonModel newPerson)
-        //{
-        //    var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-        //    var inMemorySetup = new InMemoryDbSetup(methodName);
+        [Theory]
+        [InlineAutoData()]
+        public void CreatePerson_ClubDoesNotExists_ReturnsNull(CreatePersonModel newPerson)
+        {
+            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            var inMemorySetup = new InMemoryDbSetup(methodName);
 
-        //    var club = ModelSetup.SetupClub();
-        //    newPerson.ClubId = club.Id+1;
-        //    inMemorySetup.ClubRepository().AddAndSave(club);
+            var club = ModelSetup.SetupClub();
+            newPerson.ClubId = club.Id + 1;
+            inMemorySetup.ClubRepository().AddAndSave(club);
 
-        //    var sut = new ClubService(inMemorySetup.ClubRepository(), inMemorySetup.PersonRepository(), inMemorySetup.DogRepository());
+            var sut = new ClubService(inMemorySetup.ClubRepository(), inMemorySetup.PersonRepository(), inMemorySetup.DogRepository());
 
-        //    var results = sut.CreatePerson(newPerson).Result;
+            var results = sut.CreatePerson(newPerson).Result;
 
-        //    results.ShouldBeNull();
+            results.ShouldBeNull();
 
-        //}
+        }
 
-        //[Fact]
-        //public void CreateDog_ValidMapping()
-        //{
-        //    var newClub = new CreateClubModel() { Name = "T", NafaClubNumber = 1 };
 
-        //    var club = new Club() { Id = 1, NafaClubNumber = newClub.NafaClubNumber, Name = newClub.Name };
-
-        //    var clubRepoMock = new Mock<IClubRepository>();
-        //    var personRepoMock = new Mock<IPersonRepository>();
-        //    var dogRepoMock = new Mock<IDogRepository>();
-        //    clubRepoMock.Setup(_ => _.AddAndSave(club)).Returns(club);
-
-        //    var sut = new ClubService(clubRepoMock.Object, personRepoMock.Object, dogRepoMock.Object);
-
-        //    var results = sut.CreateClub(newClub);
-
-        //    club.NafaClubNumber.ShouldBe(newClub.NafaClubNumber);
-        //    club.Name.ShouldBe(newClub.Name);
-        //}
     }
 }
