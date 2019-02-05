@@ -7,6 +7,7 @@ namespace Sheridan.Flyball.Core.Interfaces.Services
     public interface IClubService
     {
         Task<Club> CreateClub(CreateClubModel club);
+        Task<Club> GetClubById(int id);
         Task<Club> CreatePerson(CreatePersonModel person);
         Task<Person> CreateDog(CreateDogModel dog);
 

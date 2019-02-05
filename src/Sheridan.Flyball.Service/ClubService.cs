@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Interfaces.Repository;
@@ -32,9 +33,14 @@ namespace Sheridan.Flyball.Service
             return await _clubRepository.AddAndSaveAsync(club);
         }
 
+        public async Task<Club> GetClubById(int id)
+        {
+            return await _clubRepository.GetByIdAsync(id);
+        }
+
         public async Task<Club> CreatePerson(CreatePersonModel newPerson)
         {
-            var club = _clubRepository.GetById(newPerson.ClubId);
+            var club = await this.GetClubById(newPerson.ClubId);
 
             if (club == null) return null;
 
