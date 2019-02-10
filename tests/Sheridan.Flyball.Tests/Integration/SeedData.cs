@@ -10,9 +10,10 @@ namespace Sheridan.Flyball.Tests.Integration
             var club = ModelSetup.SetupClub();
             var person = ModelSetup.SetupPerson(club.Id);
 
-            context.Clubs.Add(club);
-            context.People.Add(person);
+            club.AddPerson(person);
 
+            context.Clubs.Add(club);
+            
             context.SaveChanges();
         }
     }

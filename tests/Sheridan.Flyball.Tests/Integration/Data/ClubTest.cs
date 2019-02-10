@@ -1,4 +1,6 @@
 ﻿using AutoFixture.Xunit2;
+using FlyballStatTracker.Data.EfCore;
+using Microsoft.EntityFrameworkCore;
 using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Interfaces.Repository;
 using Sheridan.Flyball.Data.EFCore.Repositories;
@@ -28,7 +30,7 @@ namespace Sheridan.Flyball.Tests.Integration.Data
         [Fact]
         public void GetPeople_ClubNotFound_ReturnNull()
         {
-            var people = _clubRepository.GetPeople(1);
+            var people = _clubRepository.GetPeople(1).Result;
 
             people.ShouldBeNull();
         }
