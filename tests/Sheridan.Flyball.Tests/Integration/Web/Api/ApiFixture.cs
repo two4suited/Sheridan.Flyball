@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Sheridan.Flyball.Tests.Integration.Web.Api
 {
-    public class ApiFixture<T> : IClassFixture<CustomWebApplicationFactory<Startup>>,IDisposable
+    public class ApiFixture : IClassFixture<CustomWebApplicationFactory<Startup>>,IDisposable
     {
         public readonly HttpClient Client;
 
@@ -25,7 +25,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
             return response;
         }
 
-        public T PostResult(string url, object model)
+        public T PostResult<T>(string url, object model)
         {
             var jsonContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
 
@@ -43,7 +43,31 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
             return response;
         }
 
+        public T GetResult<T>(string url)
+        {
+            var response = Client.GetAsync(url).Result;
+            response.EnsureSuccessStatusCode();
+            var stringResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<T>(stringResponse);
+            return result;
+        }
 
+        public HttpResponseMessage PutResponse(string url,object model)
+        {
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+            var response = Client.PutAsync(url,jsonContent).Result;
+            return response;
+        }
+
+        public T PutResult<T>(string url,object model)
+        {
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+            var response = Client.PutAsync(url,jsonContent).Result;
+            response.EnsureSuccessStatusCode();
+            var stringResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<T>(stringResponse);
+            return result;
+        }
 
         public void Dispose()
         {
