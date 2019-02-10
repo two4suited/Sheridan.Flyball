@@ -7,11 +7,8 @@ using Sheridan.Flyball.Core.ViewModels.Update;
 
 namespace Sheridan.Flyball.Core.Interfaces.Services
 {
-    public interface IClubService : IFlyballService<Club,CreateClubModel,UpdateClubModel>
+    public interface IPersonService : IFlyballService<Person,CreatePersonModel,UpdatePersonModel>
     {
-        Task<IList<Person>> GetPeople(int clubId);
-        Task<IList<Dog>> GetDogs(int clubId);
-
-
+        Task<IList<Dog>> GetDogs(int personId);
     }
 }

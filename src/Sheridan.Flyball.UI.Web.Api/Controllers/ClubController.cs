@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Sheridan.Flyball.Core.Interfaces.Services;
 using Sheridan.Flyball.Core.ViewModels.Create;
+using Sheridan.Flyball.Core.ViewModels.Update;
 using Sheridan.Flyball.UI.Web.Api.Configuration;
 
 namespace Sheridan.Flyball.UI.Web.Api.Controllers
@@ -25,19 +26,23 @@ namespace Sheridan.Flyball.UI.Web.Api.Controllers
         }
 
         [HttpPost]
-        [Route("createclub")]
         public async Task<IActionResult> CreateClub(CreateClubModel newClub)
         {
-            return new OkObjectResult(await _clubService.CreateClub(newClub));
+            return new OkObjectResult(await _clubService.Create(newClub));
         }
-        [HttpPost]
-        [Route("createperson")]
-        public async Task<IActionResult> CreatePerson(CreatePersonModel newPerson)
-        {
-            var club = await _clubService.CreatePerson(newPerson);
 
-            if (club == null) return BadRequest("The Club Id was not found");
-            return new OkObjectResult(club);
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetClub(int id)
+        {
+            return new OkObjectResult(await _clubService.GetById(id));
         }
+
+        [HttpPut()]
+        public async Task<IActionResult> UpdateClub(UpdateClubModel club)
+        {
+            return new OkObjectResult(await _clubService.Update(club));
+        }
+
+     
     }
 }

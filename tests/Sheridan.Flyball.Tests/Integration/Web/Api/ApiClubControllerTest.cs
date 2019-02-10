@@ -28,32 +28,12 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
             var createNewClub = new CreateClubModel() {Name = "Test", NafaClubNumber = -1};
             var jsonContent = new StringContent(JsonConvert.SerializeObject(createNewClub),Encoding.UTF8,"application/json");
 
-            var response = _client.PostAsync("/api/club/createclub", jsonContent).Result;
+            var response = _client.PostAsync("/api/club", jsonContent).Result;
 
             response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
         }
 
-        [Fact]
-        public void CreatePerson_Return400GivenInvalidRequest()
-        {
-            var createNewPerson = new CreatePersonModel() { ClubId = 1, FirstName = "", LastName = "T" };
-            var jsonContent = new StringContent(JsonConvert.SerializeObject(createNewPerson), Encoding.UTF8, "application/json");
-
-            var response = _client.PostAsync("/api/club/createperson", jsonContent).Result;
-
-            response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
-        }
-
-        [Fact]
-        public void CreatePerson_Return400_GivenClubNotExist()
-        {
-            var createNewPerson = new CreatePersonModel() { ClubId=1,FirstName="Test",LastName="T" };
-            var jsonContent = new StringContent(JsonConvert.SerializeObject(createNewPerson), Encoding.UTF8, "application/json");
-
-            var response = _client.PostAsync("/api/club/createperson", jsonContent).Result;
-
-            response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
-        }
+        
 
         [Fact]
         public void CreateClub_ReturnClubOnCreate()
@@ -62,7 +42,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
             var createNewClub = new CreateClubModel() { Name = "Test", NafaClubNumber = validId };
             var jsonContent = new StringContent(JsonConvert.SerializeObject(createNewClub), Encoding.UTF8, "application/json");
 
-            var response = _client.PostAsync("/api/club/createclub", jsonContent).Result;
+            var response = _client.PostAsync("/api/club", jsonContent).Result;
             response.EnsureSuccessStatusCode();
             var stringResponse = response.Content.ReadAsStringAsync().Result;
             var result = JsonConvert.DeserializeObject<Club>(stringResponse);

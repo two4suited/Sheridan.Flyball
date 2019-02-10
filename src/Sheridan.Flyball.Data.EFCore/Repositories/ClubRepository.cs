@@ -21,24 +21,21 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
 
         
 
-        public IList<Person> GetPeople(int clubId)
+        public async Task<IList<Person>> GetPeople(int clubId)
         {
-            return _dbContext.Clubs.Include(x => x.People).Single(x => x.Id == clubId).People.ToList();
+            var query = await _dbContext.Clubs.Include(x => x.People).SingleAsync(x => x.Id == clubId);
+            return query.People.ToList();
         }
 
-        public IList<Person> GetPeopleWithDogs(int clubId)
-        {
-            return _dbContext.Clubs.Include(x => x.People).ThenInclude(x => x.Dogs).Single(x => x.Id == clubId).People.ToList();
-        }
-
-        public IList<Dog> GetDogs(int clubId)
+        
+        public async Task<IList<Dog>> GetDogs(int clubId)
         {
             var dogs = from c in _dbContext.Clubs
                 join p in _dbContext.People on c.Id equals p.ClubId
                 join d in _dbContext.Dogs on p.Id equals d.PersonId
                 select d;
 
-            return dogs.ToList();
+            return await dogs.ToListAsync();
         }
 
         public double GetTeamsFastestTime(int clubId)

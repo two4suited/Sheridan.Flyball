@@ -1,10 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Interfaces.Repository;
 using Sheridan.Flyball.Core.Interfaces.Services;
 using Sheridan.Flyball.Core.ViewModels.Create;
+using Sheridan.Flyball.Core.ViewModels.Update;
 
 namespace Sheridan.Flyball.Service
 {
@@ -25,35 +27,37 @@ namespace Sheridan.Flyball.Service
             _dogRepository = dogRepository;
         }
 
+        public async Task<IList<Person>> GetPeople(int clubId)
+        {
+            return await _clubRepository.GetPeople(clubId);
+        }
 
-        public async Task<Club> CreateClub(CreateClubModel newClub)
+        public async Task<IList<Dog>> GetDogs(int clubId)
+        {
+            return await _clubRepository.GetDogs(clubId);
+        }
+
+        public async Task<Club> Create(CreateClubModel newClub)
         {
             var club = CreateClubModel.ToClub(newClub);
 
             return await _clubRepository.AddAndSaveAsync(club);
         }
 
-        public async Task<Club> GetClubById(int id)
+        public async Task<Club> GetById(int id)
         {
             return await _clubRepository.GetByIdAsync(id);
         }
 
-        public async Task<Club> CreatePerson(CreatePersonModel newPerson)
+        public async Task<Club> Update(UpdateClubModel updateClub)
         {
-            var club = await this.GetClubById(newPerson.ClubId);
-
-            if (club == null) return null;
-
-            var person = CreatePersonModel.ToPerson(newPerson);
-
-            club.AddPerson(person);
-
+            var club = UpdateClubModel.ToClub(updateClub);
             return await _clubRepository.UpdateAndSaveAsync(club);
         }
 
-        public async Task<Person> CreateDog(CreateDogModel dog)
+        public async Task<IList<Club>> All()
         {
-            throw new System.NotImplementedException();
+            return await _clubRepository.ListAsync();
         }
     }
 }
