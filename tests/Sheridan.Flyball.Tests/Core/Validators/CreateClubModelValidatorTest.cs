@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using Sheridan.Flyball.Core.ViewModels.Create;
 using Sheridan.Flyball.Core.ViewModels.Validators;
+using Sheridan.Flyball.Core.ViewModels.Validators.Create;
 using Shouldly;
 using Xunit;
 

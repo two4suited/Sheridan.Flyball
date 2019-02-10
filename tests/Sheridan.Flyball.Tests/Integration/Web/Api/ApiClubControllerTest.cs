@@ -83,7 +83,19 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
             var result = JsonConvert.DeserializeObject<Club>(stringResponse);
 
             result.Id.ShouldBe(club.Id);
-           
+        }
+
+        [Fact]
+        public void Update_InvalidModel_Return400()
+        {
+            var club = ModelSetup.SetupClub();
+            club.NafaClubNumber = -1;
+
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(club), Encoding.UTF8, "application/json");
+
+            var response = _client.PutAsync("/api/club", jsonContent).Result;
+
+            response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
         }
     }
 }

@@ -37,11 +37,18 @@ namespace Sheridan.Flyball.UI.Web.Api.Controllers
             return new OkObjectResult(await _clubService.GetById(id));
         }
 
-        [HttpPut()]
+        [HttpPut]
         public async Task<IActionResult> UpdateClub(UpdateClubModel club)
         {
             return new OkObjectResult(await _clubService.Update(club));
         }
+
+        [HttpGet("{id}/people")]
+        public async Task<IActionResult> GetPeople(int clubId)
+        {
+            return new OkObjectResult(await _clubService.GetPeople(clubId));
+        }
+
 
      
     }

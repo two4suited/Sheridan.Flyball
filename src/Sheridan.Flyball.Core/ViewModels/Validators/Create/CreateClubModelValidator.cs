@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FluentValidation;
+﻿using FluentValidation;
 using Sheridan.Flyball.Core.ViewModels.Create;
 
-namespace Sheridan.Flyball.Core.ViewModels.Validators
+namespace Sheridan.Flyball.Core.ViewModels.Validators.Create
 {
     public class CreateClubModelValidator : AbstractValidator<CreateClubModel>
     {
