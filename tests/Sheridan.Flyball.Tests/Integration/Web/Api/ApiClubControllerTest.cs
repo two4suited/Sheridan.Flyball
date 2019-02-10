@@ -41,12 +41,8 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
         {
             int validId = 1;
             var createNewClub = new CreateClubModel() { Name = "Test", NafaClubNumber = validId };
-            var jsonContent = new StringContent(JsonConvert.SerializeObject(createNewClub), Encoding.UTF8, "application/json");
-
-            var response = _client.PostAsync("/api/club", jsonContent).Result;
-            response.EnsureSuccessStatusCode();
-            var stringResponse = response.Content.ReadAsStringAsync().Result;
-            var result = JsonConvert.DeserializeObject<Club>(stringResponse);
+            
+            var result = PostResult("/api/club", createNewClub);
 
             result.Id.ShouldBe(validId);
             result.Name.ShouldBe(createNewClub.Name);
@@ -55,12 +51,8 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
         [Fact]
         public void GetById_ClubNotExist_ReturnNoContent()
         {
-            var db = new InMemoryDbSetup(System.Reflection.MethodBase.GetCurrentMethod().Name);
-            var clubRepository = db.ClubRepository();
-            var club = db.SetupClub();
-            clubRepository.AddAndSave(club);
 
-            var response = _client.GetAsync("/api/club/10").Result;
+            var response = GetResponse("/api/club/10");
 
             response.StatusCode.ShouldBe(HttpStatusCode.NoContent);
         }

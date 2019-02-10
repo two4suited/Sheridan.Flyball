@@ -37,6 +37,13 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
             return result;
         }
 
+        public HttpResponseMessage GetResponse(string url)
+        {
+            var response = Client.GetAsync(url).Result;
+            return response;
+        }
+
+
 
         public void Dispose()
         {
