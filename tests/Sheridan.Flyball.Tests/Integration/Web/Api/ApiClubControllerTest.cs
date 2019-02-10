@@ -122,6 +122,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
         }
 
+        [Fact]
         public void Update_ValidUpdate_ReturnUpdateModel()
         {
             string newName = "Updated";
