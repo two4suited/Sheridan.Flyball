@@ -13,7 +13,7 @@ using Xunit;
 namespace Sheridan.Flyball.Tests.Integration.Web.Api
 {
   
-    public class ApiClubControllerTest : ApiFixture
+    public class ApiClubControllerTest : ApiFixture<Club>
     {
         private readonly HttpClient _client;
         

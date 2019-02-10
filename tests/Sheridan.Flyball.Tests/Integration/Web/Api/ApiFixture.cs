@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Sheridan.Flyball.Tests.Integration.Web.Api
 {
-    public class ApiFixture : IClassFixture<CustomWebApplicationFactory<Startup>>,IDisposable
+    public class ApiFixture<T> : IClassFixture<CustomWebApplicationFactory<Startup>>,IDisposable
     {
         public readonly HttpClient Client;
 
@@ -23,6 +23,18 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
             var response = Client.PostAsync(url, jsonContent).Result;
 
             return response;
+        }
+
+        public T PostResult(string url, object model)
+        {
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json");
+
+            var response = Client.PostAsync(url, jsonContent).Result;
+            response.EnsureSuccessStatusCode();
+            var stringResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<T>(stringResponse);
+
+            return result;
         }
 
 
