@@ -13,22 +13,25 @@ using Xunit;
 namespace Sheridan.Flyball.Tests.Integration.Web.Api
 {
   
-    public class ApiClubControllerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class ApiClubControllerTest : ApiFixture
     {
         private readonly HttpClient _client;
+        
 
-        public ApiClubControllerTest(CustomWebApplicationFactory<Startup> factory)
+
+        public ApiClubControllerTest(CustomWebApplicationFactory<Startup> factory)  : base(factory)
         {
-            _client = factory.CreateClient();
+            _client = null;
+           
+
         }
 
         [Fact]
         public void Create_Return400GivenInvalidRequest()
         {
             var createNewClub = new CreateClubModel() {Name = "Test", NafaClubNumber = -1};
-            var jsonContent = new StringContent(JsonConvert.SerializeObject(createNewClub),Encoding.UTF8,"application/json");
-
-            var response = _client.PostAsync("/api/club", jsonContent).Result;
+            
+            var response = PostResponse("api/club", createNewClub);
 
             response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
         }
