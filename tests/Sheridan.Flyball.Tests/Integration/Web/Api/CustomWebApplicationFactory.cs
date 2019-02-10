@@ -42,7 +42,18 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
 
                     // Ensure the database is created.
                     db.Database.EnsureCreated();
-                    
+
+                    try
+                    {
+                        // Seed the database with some specific test data.
+                        SeedData.PopulateTestData(db);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.LogError(ex, "An error occurred seeding the " +
+                                            "database with test messages. Error: {ex.Message}");
+                    }
+
                 }
             });
         }

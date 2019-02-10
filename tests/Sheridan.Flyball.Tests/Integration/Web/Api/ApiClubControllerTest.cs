@@ -23,7 +23,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
         }
 
         [Fact]
-        public void CreateClub_Return400GivenInvalidRequest()
+        public void Create_Return400GivenInvalidRequest()
         {
             var createNewClub = new CreateClubModel() {Name = "Test", NafaClubNumber = -1};
             var jsonContent = new StringContent(JsonConvert.SerializeObject(createNewClub),Encoding.UTF8,"application/json");
@@ -32,11 +32,9 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
 
             response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
         }
-
         
-
         [Fact]
-        public void CreateClub_ReturnClubOnCreate()
+        public void Create_ReturnClubOnCreate()
         {
             int validId = 1;
             var createNewClub = new CreateClubModel() { Name = "Test", NafaClubNumber = validId };
@@ -49,7 +47,43 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
 
             result.Id.ShouldBe(validId);
             result.Name.ShouldBe(createNewClub.Name);
+        }
 
+        [Fact]
+        public void GetById_ClubNotExist_ReturnNoContent()
+        {
+            var db = new InMemoryDbSetup(System.Reflection.MethodBase.GetCurrentMethod().Name);
+            var clubRepository = db.ClubRepository();
+            var club = db.SetupClub();
+            clubRepository.AddAndSave(club);
+
+            var response = _client.GetAsync("/api/club/10").Result;
+
+            response.StatusCode.ShouldBe(HttpStatusCode.NoContent);
+        }
+
+        [Fact]
+        public void GetById_ClubExist_ReturnOk()
+        {
+            var club = ModelSetup.SetupClub();
+
+            var response = _client.GetAsync("/api/club/" + club.Id).Result;
+
+            response.StatusCode.ShouldBe(HttpStatusCode.OK);
+        }
+
+        [Fact]
+        public void GetById_ClubExist_ReturnClub ()
+        {
+            var club = ModelSetup.SetupClub();
+
+            var response = _client.GetAsync("/api/club/" + club.Id).Result;
+            response.EnsureSuccessStatusCode();
+            var stringResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<Club>(stringResponse);
+
+            result.Id.ShouldBe(club.Id);
+           
         }
     }
 }

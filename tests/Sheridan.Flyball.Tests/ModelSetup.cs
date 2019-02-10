@@ -11,7 +11,7 @@ namespace Sheridan.Flyball.Tests
         {
             return new Club()
             {
-                Id = 1,
+                Id = 100,
                 NafaClubNumber = 20,
                 Name = "Rip It Up",
             };

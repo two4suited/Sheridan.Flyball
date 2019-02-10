@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Interfaces.Repository;
 using Sheridan.Flyball.Data.EFCore.Repositories;
 
@@ -18,8 +19,6 @@ namespace Sheridan.Flyball.Tests.Integration
                 .Options;
 
             _context = new FlyballDbContext(options);
-
-            
         }
 
         public IClubRepository ClubRepository()
@@ -33,6 +32,27 @@ namespace Sheridan.Flyball.Tests.Integration
         public IDogRepository DogRepository()
         {
             return new DogRepository(_context);
+        }
+
+        public Club SetupClub()
+        {
+            return new Club()
+            {
+                Id = 1,
+                NafaClubNumber = 20,
+                Name = "Rip It Up",
+            };
+        }
+
+        public Person SetupPerson(int clubId)
+        {
+            return new Person()
+            {
+                ClubId = clubId,
+                Id = 1,
+                FirstName = "FirstName",
+                LastName = "LastName"
+            };
         }
     }
 }
