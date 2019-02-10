@@ -11,27 +11,29 @@ namespace Sheridan.Flyball.Tests.Integration
 {
     public class InMemoryDbSetup
     {
-        private readonly FlyballDbContext _context;
+        public  FlyballDbContext Context;
         public InMemoryDbSetup(string dbName)
         {
             var options = new DbContextOptionsBuilder<FlyballDbContext>()
                 .UseInMemoryDatabase(databaseName: dbName)
                 .Options;
 
-            _context = new FlyballDbContext(options);
+            Context = new FlyballDbContext(options);
+
+            Context.Database.EnsureCreated();
         }
 
         public IClubRepository ClubRepository()
         {
-            return new ClubRepository(_context);
+            return new ClubRepository(Context);
         }
         public IPersonRepository PersonRepository()
         {
-            return new PersonRepository(_context);
+            return new PersonRepository(Context);
         }
         public IDogRepository DogRepository()
         {
-            return new DogRepository(_context);
+            return new DogRepository(Context);
         }
 
         public Club SetupClub()

@@ -29,6 +29,8 @@ namespace Sheridan.Flyball.Service
 
         public async Task<IList<Person>> GetPeople(int clubId)
         {
+            
+
             return await _clubRepository.GetPeople(clubId);
         }
 

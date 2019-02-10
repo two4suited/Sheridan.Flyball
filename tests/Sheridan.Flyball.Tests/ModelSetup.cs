@@ -17,6 +17,17 @@ namespace Sheridan.Flyball.Tests
             };
         }
 
+        public static Person SetupPerson(int clubId)
+        {
+            return new Person()
+            {
+                ClubId = clubId,
+                FirstName = "Test",
+                Id = 100,
+                LastName = "TestLastName"
+            };
+        }
+
         
     }
 }

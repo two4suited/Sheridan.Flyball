@@ -24,6 +24,7 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
         public async Task<IList<Person>> GetPeople(int clubId)
         {
             var query = await _dbContext.Clubs.Include(x => x.People).SingleAsync(x => x.Id == clubId);
+            
             return query.People.ToList();
         }
 

@@ -7,7 +7,11 @@ namespace Sheridan.Flyball.Tests.Integration
     {
         public static void PopulateTestData(FlyballDbContext context)
         {
-            context.Clubs.Add(ModelSetup.SetupClub());
+            var club = ModelSetup.SetupClub();
+            var person = ModelSetup.SetupPerson(club.Id);
+
+            context.Clubs.Add(club);
+            context.People.Add(person);
 
             context.SaveChanges();
         }

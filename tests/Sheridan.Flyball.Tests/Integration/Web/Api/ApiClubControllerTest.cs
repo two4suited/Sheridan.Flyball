@@ -138,5 +138,15 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
 
             result.Name.ShouldBe(newName);
         }
+
+        [Fact]
+        public void GetPeople_ClubDoesExist_Return204()
+        {
+            var clubId = 1;
+      
+            var response = _client.GetAsync("/api/club/" +  clubId + "/people").Result;
+
+            response.StatusCode.ShouldBe(HttpStatusCode.NoContent);
+        }
     }
 }
