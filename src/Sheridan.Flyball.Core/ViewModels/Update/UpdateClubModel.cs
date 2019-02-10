@@ -8,9 +8,12 @@ namespace Sheridan.Flyball.Core.ViewModels.Update
         public int NafaClubNumber { get; set; }
         public string Name { get; set; }
 
-        public static Club ToClub(UpdateClubModel newClub)
+        public static Club ToClub(UpdateClubModel newClub,Club club)
         {
-            return new Club() { NafaClubNumber = newClub.NafaClubNumber, Name = newClub.Name, Id = newClub.Id};
+            club.NafaClubNumber = newClub.NafaClubNumber;
+            club.Name = newClub.Name;
+
+            return club;
         }
 
     }
