@@ -97,5 +97,18 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
 
             response.StatusCode.ShouldBe(HttpStatusCode.BadRequest);
         }
+
+        [Fact]
+        public void Update_IdNotFound_Return204()
+        {
+            var club = ModelSetup.SetupClub();
+            club.Id = 1;
+
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(club), Encoding.UTF8, "application/json");
+
+            var response = _client.PutAsync("/api/club", jsonContent).Result;
+
+            response.StatusCode.ShouldBe(HttpStatusCode.NoContent);
+        }
     }
 }

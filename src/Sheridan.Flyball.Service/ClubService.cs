@@ -52,6 +52,11 @@ namespace Sheridan.Flyball.Service
         public async Task<Club> Update(UpdateClubModel updateClub)
         {
             var club = UpdateClubModel.ToClub(updateClub);
+
+            var checkLogExist = await _clubRepository.GetByIdAsync(updateClub.Id);
+
+            if (checkLogExist == null) return null;
+
             return await _clubRepository.UpdateAndSaveAsync(club);
         }
 
