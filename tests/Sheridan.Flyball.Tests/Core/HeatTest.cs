@@ -19,18 +19,18 @@ namespace Sheridan.Flyball.Tests.Core
         //If Lineup is null return exception
         //
 
-        [Theory, InlineAutoData()]
-        public void AddStartTime_WhenDivisionReRunStartAndFault_ThenReturnsSameDog(Division division,
-            Heat heat, Dog dog1,Dog dog2,Dog dog3,Dog dog4, Fault fault, double time)
-        {
-            division.RacingClass = RacingClass.Regular;
-            heat.AddDogToLineup(division,dog1, dog2, dog3, dog4);
-            fault = Fault.BadStart;
+        //[Theory, InlineAutoData()]
+        //public void AddStartTime_WhenDivisionReRunStartAndFault_ThenReturnsSameDog(Division division,
+        //    Heat heat, Dog dog1,Dog dog2,Dog dog3,Dog dog4, Fault fault, double time)
+        //{
+        //    division.RacingClass = RacingClass.Regular;
+        //    heat.AddDogToLineup(division,dog1, dog2, dog3, dog4);
+        //    fault = Fault.BadStart;
 
-            var vut = heat.AddStartTime(dog1, time, fault, division);
+        //    var vut = heat.AddStartTime(dog1, time, fault, division);
 
-            vut.Dog.ShouldBe(dog1);
-        }
+        //    vut.Dog.ShouldBe(dog1);
+        //}
 
         //[Theory, InlineAutoData()]
         //public void AddStartTime_WhenDivisionReRunStartAndFault_ThenReturnsStartRerunPosition(Division division,

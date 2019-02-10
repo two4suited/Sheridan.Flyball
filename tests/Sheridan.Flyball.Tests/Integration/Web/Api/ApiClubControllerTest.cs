@@ -65,7 +65,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
         [Fact]
         public void GetById_ClubExist_ReturnOk()
         {
-            var club = ModelSetup.SetupClub();
+            var club = ModelSetup.SetupClubWithNoPeople();
 
             var response = _client.GetAsync("/api/club/" + club.Id).Result;
 
@@ -75,7 +75,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
         [Fact]
         public void GetById_ClubExist_ReturnClub ()
         {
-            var club = ModelSetup.SetupClub();
+            var club = ModelSetup.SetupClubWithNoPeople();
 
             var response = _client.GetAsync("/api/club/" + club.Id).Result;
             response.EnsureSuccessStatusCode();
@@ -88,7 +88,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
         [Fact]
         public void Update_InvalidModel_Return400()
         {
-            var club = ModelSetup.SetupClub();
+            var club = ModelSetup.SetupClubWithNoPeople();
             club.NafaClubNumber = -1;
 
             var jsonContent = new StringContent(JsonConvert.SerializeObject(club), Encoding.UTF8, "application/json");
@@ -101,7 +101,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
         [Fact]
         public void Update_IdNotFound_Return204()
         {
-            var club = ModelSetup.SetupClub();
+            var club = ModelSetup.SetupClubWithNoPeople();
             club.Id = 1;
 
             var jsonContent = new StringContent(JsonConvert.SerializeObject(club), Encoding.UTF8, "application/json");
@@ -114,7 +114,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
         [Fact]
         public void Update_ValidUpdate_Return200()
         {
-            var club = ModelSetup.SetupClub();
+            var club = ModelSetup.SetupClubWithNoPeople();
             var jsonContent = new StringContent(JsonConvert.SerializeObject(club), Encoding.UTF8, "application/json");
 
             var response = _client.PutAsync("/api/club", jsonContent).Result;
@@ -127,7 +127,7 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
         {
             string newName = "Updated";
 
-            var club = ModelSetup.SetupClub();
+            var club = ModelSetup.SetupClubWithNoPeople();
             club.Name = newName;
             var jsonContent = new StringContent(JsonConvert.SerializeObject(club), Encoding.UTF8, "application/json");
 
@@ -147,6 +147,45 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
             var response = _client.GetAsync("/api/club/" +  clubId + "/people").Result;
 
             response.StatusCode.ShouldBe(HttpStatusCode.NoContent);
+        }
+
+        [Fact]
+        public void GetPeople_ClubExistNoPeople_ReturnsEmptyList()
+        {
+            var club = ModelSetup.SetupClubWithNoPeople();
+
+            var response = _client.GetAsync("/api/club/" + club.Id + "/people").Result;
+            response.EnsureSuccessStatusCode();
+            var stringResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<Club>(stringResponse);
+
+            result.ShouldBeNull();
+        }
+
+        [Fact]
+        public void GetPeople_ClubExistNoPeople_ReturnsList()
+        {
+            var club = ModelSetup.SetupClubWithNoPeople();
+
+            var response = _client.GetAsync("/api/club/" + club.Id + "/people").Result;
+            response.EnsureSuccessStatusCode();
+            var stringResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<List<Person>>(stringResponse);
+
+            result.ShouldBeNull();
+        }
+
+        [Fact]
+        public void GetPeople_ClubExistWithPeople_ReturnsList()
+        {
+            var club = ModelSetup.SetupClubWithPeople();
+
+            var response = _client.GetAsync("/api/club/" + club.Id + "/people").Result;
+            response.EnsureSuccessStatusCode();
+            var stringResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<List<Person>>(stringResponse);
+
+            result.Count.ShouldBeGreaterThanOrEqualTo(1);
         }
     }
 }

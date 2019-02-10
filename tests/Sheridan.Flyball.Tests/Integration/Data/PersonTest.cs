@@ -16,22 +16,22 @@ namespace Sheridan.Flyball.Tests.Integration.Data
 
         }
 
-        [Theory]
-        [InlineAutoData()]
-        public void GetListOfDogs_ReturnCorrectNumber(Person person)
-        {
-            //Setup Repository
-            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var context = TestHelper.SetupContext(methodName);
-            var personRepo = new PersonRepository(context);
-            personRepo.AddAndSave(person);
+        //[Theory]
+        //[InlineAutoData()]
+        //public void GetListOfDogs_ReturnCorrectNumber(Person person)
+        //{
+        //    //Setup Repository
+        //    var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+        //    var context = TestHelper.SetupContext(methodName);
+        //    var personRepo = new PersonRepository(context);
+        //    personRepo.AddAndSave(person);
 
-            //Pull Data out of object
-            var dogs = person.Dogs;
+        //    //Pull Data out of object
+        //    var dogs = person.Dogs;
 
-            //Compare Data
-            dogs.Count.ShouldBe(personRepo.GetListOfDogs(person.Id).Count);
+        //    //Compare Data
+        //    dogs.Count.ShouldBe(personRepo.GetListOfDogs(person.Id).Count);
 
-        }
+        //}
     }
 }

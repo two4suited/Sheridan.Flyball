@@ -1,4 +1,5 @@
-﻿using AutoFixture.Xunit2;
+﻿using System.Linq;
+using AutoFixture.Xunit2;
 using FlyballStatTracker.Data.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Sheridan.Flyball.Core.Entities;
@@ -9,36 +10,51 @@ using Xunit;
 
 namespace Sheridan.Flyball.Tests.Integration.Data
 {
-    public class ClubTest
+    public class ClubTest : IClassFixture<DatabaseFixture>
     {
         private IClubRepository _clubRepository;
+        private DatabaseFixture _fixture;
 
-        public ClubTest()
+        public ClubTest(DatabaseFixture fixture)
         {
-            var db = new InMemoryDbSetup("ClubTests");
-            SeedData.PopulateTestData(db.Context);
-            _clubRepository = db.ClubRepository();
+            _fixture = fixture;
+            
+            _clubRepository = _fixture.ClubRepository();
         }
 
-        [Theory]
-        [InlineAutoData()]
-        public void AddOne_ThenOne(Club club)
-        {
-            TestHelper.AddOne_ThenOne(club,typeof(Club).Name);
-        }
+       
+        //[Fact]
+        //public void GetPeople_ClubNotFound_ReturnNull()
+        //{
+        //    var people = _clubRepository.GetPeople(1).Result;
 
-        [Fact]
-        public void GetPeople_ClubNotFound_ReturnNull()
-        {
-            var people = _clubRepository.GetPeople(1).Result;
+        //    people.ShouldBeNull();
+        //}
 
-            people.ShouldBeNull();
-        }
+        //[Fact]
+        //public void GetPeople_ClubFoundNoPeople_ReturnBlankPeople()
+        //{
+        //    var club = ModelSetup.SetupClubWithNoPeople();
+        //    var people = _clubRepository.GetPeople(club.Id).Result;
+
+        //    people.Count.ShouldBe(0);
+        //}
+
+        //[Fact]
+        //public void GetPeople_ClubFoundPeople_ReturnPeople()
+        //{
+         
+        //    var club = ModelSetup.SetupClubWithPeople();
+       
+        //    var people = _clubRepository.GetPeople(club.Id).Result;
+
+        //    people.Count.ShouldBeGreaterThanOrEqualTo(1);
+        //}
 
 
-        
 
-        
+
+
 
 
 

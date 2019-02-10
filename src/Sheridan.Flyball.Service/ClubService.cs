@@ -31,7 +31,7 @@ namespace Sheridan.Flyball.Service
         {
             
 
-            return await _clubRepository.GetPeople(clubId);
+            return await _personRepository.GetPeopleOnClub(clubId);
         }
 
         public async Task<IList<Dog>> GetDogs(int clubId)

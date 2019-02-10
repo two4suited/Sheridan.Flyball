@@ -6,14 +6,11 @@ namespace Sheridan.Flyball.Tests.Integration
     public static class SeedData
     {
         public static void PopulateTestData(FlyballDbContext context)
-        {
-            var club = ModelSetup.SetupClub();
-            var person = ModelSetup.SetupPerson(club.Id);
+        {   
+            context.Clubs.Add(ModelSetup.SetupClubWithPeople());
+            context.Clubs.Add(ModelSetup.SetupClubWithNoPeople());
 
-            club.AddPerson(person);
 
-            context.Clubs.Add(club);
-            
             context.SaveChanges();
         }
     }

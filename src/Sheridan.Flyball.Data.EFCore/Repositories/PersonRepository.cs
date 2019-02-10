@@ -1,6 +1,7 @@
 ﻿using Sheridan.Data.EntityFramework;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using FlyballStatTracker.Data.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Sheridan.Flyball.Core.Entities;
@@ -17,9 +18,15 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
             _dbContext = dbContext;
         }
 
-        public IList<Dog> GetListOfDogs(int personId)
+        public async Task<IList<Dog>> GetListOfDogs(int personId)
         {
-            return _dbContext.People.Include(x => x.Dogs).Single(x => x.Id == personId).Dogs.ToList();
+            var t = await _dbContext.People.Include(x => x.Dogs).SingleAsync(x => x.Id == personId);
+            return t.Dogs;
+        }
+
+        public async Task<IList<Person>> GetPeopleOnClub(int clubId)
+        {
+            return await _dbContext.People.Where(x => x.ClubId == clubId).ToListAsync();
         }
     }
 }
