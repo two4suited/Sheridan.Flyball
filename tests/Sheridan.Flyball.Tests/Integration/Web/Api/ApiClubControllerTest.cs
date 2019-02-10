@@ -121,5 +121,21 @@ namespace Sheridan.Flyball.Tests.Integration.Web.Api
 
             response.StatusCode.ShouldBe(HttpStatusCode.OK);
         }
+
+        public void Update_ValidUpdate_ReturnUpdateModel()
+        {
+            string newName = "Updated";
+
+            var club = ModelSetup.SetupClub();
+            club.Name = newName;
+            var jsonContent = new StringContent(JsonConvert.SerializeObject(club), Encoding.UTF8, "application/json");
+
+            var response = _client.PutAsync("/api/club", jsonContent).Result;
+            response.EnsureSuccessStatusCode();
+            var stringResponse = response.Content.ReadAsStringAsync().Result;
+            var result = JsonConvert.DeserializeObject<Club>(stringResponse);
+
+            result.Name.ShouldBe(newName);
+        }
     }
 }
