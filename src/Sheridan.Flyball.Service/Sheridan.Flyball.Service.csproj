@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Sheridan.Flyball.Core\Sheridan.Flyball.Core.csproj" />
+    <ProjectReference Include="..\Sheridan.Flyball.Data.EFCore\Sheridan.Flyball.Data.EFCore.csproj" />
   </ItemGroup>
 
 </Project>

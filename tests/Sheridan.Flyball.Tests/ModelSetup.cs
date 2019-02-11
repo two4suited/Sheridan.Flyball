@@ -66,8 +66,8 @@ namespace Sheridan.Flyball.Tests
             {
                 Id = 100,
                 NafaCrn = "0",
-                PersonId = personId;
-            }
+                PersonId = personId
+            };
         }
 
         
