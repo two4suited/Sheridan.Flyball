@@ -7,9 +7,9 @@ namespace Sheridan.Flyball.Core.Enumerations
 {
     public class RacingClass : Enumeration
     {
-        public static RacingClass Open = new RacingClass(1, nameof(Open).ToLowerInvariant());
-        public static RacingClass Regular = new RacingClass(2, nameof(Regular).ToLowerInvariant());
-        public static RacingClass Veteran = new RacingClass(3, nameof(Veteran).ToLowerInvariant());
+        public static RacingClass Open = new RacingClass(1, nameof(Open));
+        public static RacingClass Regular = new RacingClass(2, nameof(Regular));
+        public static RacingClass Veteran = new RacingClass(3, nameof(Veteran));
        
 
 

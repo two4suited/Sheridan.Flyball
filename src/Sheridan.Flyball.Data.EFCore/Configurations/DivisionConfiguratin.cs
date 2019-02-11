@@ -4,7 +4,7 @@ using Sheridan.Flyball.Core.Entities;
 
 namespace Sheridan.Flyball.Data.EFCore.Configurations
 {
-    public class DivisionConfiguratin : IEntityTypeConfiguration<Division>
+    public class DivisionConfiguration : IEntityTypeConfiguration<Division>
     {
         public void Configure(EntityTypeBuilder<Division> builder)
         {

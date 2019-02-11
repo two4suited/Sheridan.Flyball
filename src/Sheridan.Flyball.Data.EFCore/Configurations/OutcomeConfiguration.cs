@@ -12,7 +12,7 @@ namespace Sheridan.Flyball.Data.EFCore.Configurations
 
             builder.Property(ct => ct.Id)
               //  .HasDefaultValue(1)
-              //  .ValueGeneratedNever()
+                .ValueGeneratedNever()
                 .IsRequired();
 
             builder.Property(ct => ct.Name)

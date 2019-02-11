@@ -8,8 +8,8 @@ namespace Sheridan.Flyball.Core.Enumerations
    
     public class LaneSide : Enumeration
     {
-        public static LaneSide Right = new LaneSide(1, nameof(Right).ToLowerInvariant());
-        public static LaneSide Left = new LaneSide(1, nameof(Left).ToLowerInvariant());
+        public static LaneSide Right = new LaneSide(1, nameof(Right));
+        public static LaneSide Left = new LaneSide(2, nameof(Left));
 
         protected LaneSide()
         {
@@ -21,7 +21,7 @@ namespace Sheridan.Flyball.Core.Enumerations
         }
 
         public static IEnumerable<LaneSide> List() =>
-            new[] {Right};
+            new[] {Right,Left};
 
         public static LaneSide FromName(string name)
         {

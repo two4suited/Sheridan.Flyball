@@ -79,12 +79,15 @@ namespace Sheridan.Flyball.UI.Web.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Flyball Api V1");
             });
 
-            //This is failing my tests will have to dig more into it #1
-            //using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            //{
-            //    var context = serviceScope.ServiceProvider.GetService<FlyballDbContext>();
-            //    context.Database.Migrate();
-            //}
+          
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<FlyballDbContext>();
+                context.Database.EnsureCreated();
+                 //This is failing my tests will have to dig more into it #1
+                 //context.Database.Migrate();
+                 SeedData.PopulateData(context);
+            }
 
             if (env.IsDevelopment())
             {

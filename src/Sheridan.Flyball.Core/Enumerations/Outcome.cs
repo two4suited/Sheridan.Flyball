@@ -20,10 +20,10 @@ namespace Sheridan.Flyball.Core.Enumerations
 
     public class Outcome : Enumeration
     {
-        public static Outcome Win = new Outcome(1, nameof(Win).ToLowerInvariant());
-        public static Outcome Lose = new Outcome(2, nameof(Lose).ToLowerInvariant());
-        public static Outcome Tie = new Outcome(3, nameof(Tie).ToLowerInvariant());
-        public static Outcome NF = new Outcome(4, nameof(NF).ToLowerInvariant());
+        public static Outcome Win = new Outcome(1, nameof(Win));
+        public static Outcome Lose = new Outcome(2, nameof(Lose));
+        public static Outcome Tie = new Outcome(3, nameof(Tie));
+        public static Outcome NF = new Outcome(4, nameof(NF));
 
 
         protected Outcome()
@@ -36,7 +36,7 @@ namespace Sheridan.Flyball.Core.Enumerations
         }
 
         public static IEnumerable<Outcome> List() =>
-            new[] { Win };
+            new[] { Win,Lose,Tie,NF };
 
         public static Outcome FromName(string name)
         {

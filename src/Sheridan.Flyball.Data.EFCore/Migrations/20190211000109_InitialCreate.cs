@@ -26,8 +26,7 @@ namespace Sheridan.Flyball.Data.EFCore.Migrations
                 name: "Faults",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
@@ -39,8 +38,7 @@ namespace Sheridan.Flyball.Data.EFCore.Migrations
                 name: "Lane",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
@@ -52,8 +50,7 @@ namespace Sheridan.Flyball.Data.EFCore.Migrations
                 name: "Outcomes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
@@ -65,8 +62,7 @@ namespace Sheridan.Flyball.Data.EFCore.Migrations
                 name: "Positions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>
@@ -92,8 +88,7 @@ namespace Sheridan.Flyball.Data.EFCore.Migrations
                 name: "RacingClasses",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 200, nullable: false)
                 },
                 constraints: table =>

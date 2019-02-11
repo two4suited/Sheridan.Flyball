@@ -264,9 +264,7 @@ namespace Sheridan.Flyball.Data.EFCore.Migrations
 
             modelBuilder.Entity("Sheridan.Flyball.Core.Enumerations.Fault", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -279,9 +277,7 @@ namespace Sheridan.Flyball.Data.EFCore.Migrations
 
             modelBuilder.Entity("Sheridan.Flyball.Core.Enumerations.LaneSide", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -294,9 +290,7 @@ namespace Sheridan.Flyball.Data.EFCore.Migrations
 
             modelBuilder.Entity("Sheridan.Flyball.Core.Enumerations.Outcome", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -309,9 +303,7 @@ namespace Sheridan.Flyball.Data.EFCore.Migrations
 
             modelBuilder.Entity("Sheridan.Flyball.Core.Enumerations.Position", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -324,9 +316,7 @@ namespace Sheridan.Flyball.Data.EFCore.Migrations
 
             modelBuilder.Entity("Sheridan.Flyball.Core.Enumerations.RacingClass", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("Id");
 
                     b.Property<string>("Name")
                         .IsRequired()

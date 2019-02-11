@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sheridan.Flyball.Core.Enumerations;
 
@@ -11,8 +12,8 @@ namespace Sheridan.Flyball.Data.EFCore.Configurations
             builder.HasKey(x => x.Id);
 
             builder.Property(ct => ct.Id)
-                //.HasDefaultValue(1)
-               // .ValueGeneratedNever()
+                 //.HasDefaultValue(1)
+                .ValueGeneratedNever()
                 .IsRequired();
 
             builder.Property(ct => ct.Name)

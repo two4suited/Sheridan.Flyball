@@ -8,10 +8,10 @@ namespace Sheridan.Flyball.Core.Enumerations
     
     public class Fault : Enumeration
     {
-        public static Fault SpitBall = new Fault(1, nameof(SpitBall).ToLowerInvariant());
-        public static Fault BadPass = new Fault(2, nameof(BadPass).ToLowerInvariant());
-        public static Fault Interference = new Fault(3, nameof(Interference).ToLowerInvariant());
-        public static Fault BadStart = new Fault(4,nameof(BadStart).ToLowerInvariant());
+        public static Fault SpitBall = new Fault(1, nameof(SpitBall));
+        public static Fault BadPass = new Fault(2, nameof(BadPass));
+        public static Fault Interference = new Fault(3, nameof(Interference));
+        public static Fault BadStart = new Fault(4,nameof(BadStart));
 
 
         protected Fault()

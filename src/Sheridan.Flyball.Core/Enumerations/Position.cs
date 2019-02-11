@@ -8,12 +8,12 @@ namespace Sheridan.Flyball.Core.Enumerations
    
     public class Position : Enumeration
     {
-        public static Position Start = new Position(1, nameof(Start).ToLowerInvariant());
-        public static Position StartReRun = new Position(2, nameof(StartReRun).ToLowerInvariant());
-        public static Position First = new Position(3, nameof(First).ToLowerInvariant());
-        public static Position Second = new Position(4, nameof(Second).ToLowerInvariant());
-        public static Position Third = new Position(5, nameof(Third).ToLowerInvariant());
-        public static Position Fourth = new Position(6, nameof(Fourth).ToLowerInvariant());
+        public static Position Start = new Position(1, nameof(Start));
+        public static Position StartReRun = new Position(2, nameof(StartReRun));
+        public static Position First = new Position(3, nameof(First));
+        public static Position Second = new Position(4, nameof(Second));
+        public static Position Third = new Position(5, nameof(Third));
+        public static Position Fourth = new Position(6, nameof(Fourth));
 
 
         protected Position()
