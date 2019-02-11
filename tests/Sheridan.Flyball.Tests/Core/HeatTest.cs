@@ -96,18 +96,18 @@ namespace Sheridan.Flyball.Tests.Core
 
             vut.Position.ShouldBe(Position.First);
         }
-        [Theory, InlineAutoData()]
-        public void AddStartTime_WhenDivisionNotReRunStartAndClean_ThenReturnsSameDog(Division division,
-            Heat heat, Dog dog1, Dog dog2, Dog dog3, Dog dog4,  double time)
-        {
-            division.RacingClass = RacingClass.Regular;
-            heat.AddDogToLineup(division,dog1, dog2, dog3, dog4);
-            Fault fault = null;
+        //[Theory, InlineAutoData()]
+        //public void AddStartTime_WhenDivisionNotReRunStartAndClean_ThenReturnsSameDog(Division division,
+        //    Heat heat, Dog dog1, Dog dog2, Dog dog3, Dog dog4,  double time)
+        //{
+        //    division.RacingClass = RacingClass.Regular;
+        //    heat.AddDogToLineup(division,dog1, dog2, dog3, dog4);
+        //    Fault fault = null;
 
-            var vut = heat.AddStartTime(dog1, time, fault, division);
+        //    var vut = heat.AddStartTime(dog1, time, fault, division);
 
-            vut.Dog.ShouldBe(dog1);
-        }
+        //    vut.Dog.ShouldBe(dog1);
+        //}
 
         [Theory, InlineAutoData()]
         public void AddStartTime_WhenDivisionNotRerunStartAndClean_ThenReturnsFirstPosition(Division division,
