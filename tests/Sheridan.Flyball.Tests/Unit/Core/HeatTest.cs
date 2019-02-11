@@ -5,7 +5,7 @@ using Sheridan.Flyball.Core.Enumerations;
 using Shouldly;
 using Xunit;
 
-namespace Sheridan.Flyball.Tests.Core
+namespace Sheridan.Flyball.Tests.Unit.Core
 {
     public class HeatTest
     {

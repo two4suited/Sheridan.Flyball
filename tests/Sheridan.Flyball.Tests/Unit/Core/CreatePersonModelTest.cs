@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Sheridan.Flyball.Core.ViewModels.Create;
+﻿using Sheridan.Flyball.Core.ViewModels.Create;
 using Shouldly;
 using Xunit;
 
-namespace Sheridan.Flyball.Tests.Core
+namespace Sheridan.Flyball.Tests.Unit.Core
 {
     public class CreatePersonModelTest
     {

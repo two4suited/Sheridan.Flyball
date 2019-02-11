@@ -2,7 +2,7 @@
 using Shouldly;
 using Xunit;
 
-namespace Sheridan.Flyball.Tests.Core
+namespace Sheridan.Flyball.Tests.Unit.Core
 {
     public class PositionTest
     {

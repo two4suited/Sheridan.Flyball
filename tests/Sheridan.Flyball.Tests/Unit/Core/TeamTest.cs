@@ -3,7 +3,7 @@ using Sheridan.Flyball.Core.Entities;
 using Shouldly;
 using Xunit;
 
-namespace Sheridan.Flyball.Tests.Core
+namespace Sheridan.Flyball.Tests.Unit.Core
 {
     public class TeamTest
     {

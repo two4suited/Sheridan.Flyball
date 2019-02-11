@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Moq;
-using Sheridan.Flyball.Core.Entities;
-using Sheridan.Flyball.Core.Interfaces.Repository;
-using Sheridan.Flyball.Core.ViewModels.Create;
-using Sheridan.Flyball.Service;
+﻿using Sheridan.Flyball.Core.ViewModels.Create;
 using Shouldly;
 using Xunit;
 
-namespace Sheridan.Flyball.Tests.Core
+namespace Sheridan.Flyball.Tests.Unit.Core
 {
     public class CreateClubModelTest
     {

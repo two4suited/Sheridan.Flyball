@@ -31,6 +31,24 @@ namespace Sheridan.Flyball.Tests
             return club;
         }
 
+        public static Club SetupClubWithPeopleAndDog()
+        {
+            var club = new Club()
+            {
+                Id = 102,
+                NafaClubNumber = 20,
+                Name = "Rip It Up",
+            };
+            var person = ModelSetup.SetupPerson(club.Id);
+            club.AddPerson(person);
+
+            var dog = ModelSetup.SetupDog(person.Id);
+            person.AddDog(dog);
+
+            return club;
+
+        }
+
         public static Person SetupPerson(int clubId)
         {
             return new Person()
@@ -40,6 +58,16 @@ namespace Sheridan.Flyball.Tests
                 Id = 100,
                 LastName = "TestLastName"
             };
+        }
+
+        public static Dog SetupDog(int personId)
+        {
+            return new Dog()
+            {
+                Id = 100,
+                NafaCrn = "0",
+                PersonId = personId;
+            }
         }
 
         

@@ -1,11 +1,10 @@
 ﻿using FluentValidation.Results;
 using Sheridan.Flyball.Core.ViewModels.Create;
-using Sheridan.Flyball.Core.ViewModels.Validators;
 using Sheridan.Flyball.Core.ViewModels.Validators.Create;
 using Shouldly;
 using Xunit;
 
-namespace Sheridan.Flyball.Tests.Core.Validators
+namespace Sheridan.Flyball.Tests.Unit.Core.Validators
 {
     public class CreateClubModelValidatorTest
     {
