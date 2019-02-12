@@ -1,5 +1,4 @@
 ﻿using FlyballStatTracker.Data.EfCore;
-using Sheridan.Flyball.Core.Entities;
 
 namespace Sheridan.Flyball.Tests.Integration
 {

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using Newtonsoft.Json;
 using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.ViewModels.Create;
 using Sheridan.Flyball.UI.Web.Api;
