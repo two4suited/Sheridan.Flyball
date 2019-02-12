@@ -16,20 +16,20 @@ namespace Sheridan.Flyball.Tests.Integration.Services
         
 
 
-        [Theory]
-        [InlineAutoData()]
-        public void CreateClub_OneClubCreated(CreateClubModel newClub)
-        {
-            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-            var inMemorySetup = new InMemoryDbSetup(methodName);
+        //[Theory]
+        //[InlineAutoData()]
+        //public void CreateClub_OneClubCreated(CreateClubModel newClub)
+        //{
+        //    var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+        //    var inMemorySetup = new InMemoryDbSetup(methodName);
 
-            var sut = new ClubService(inMemorySetup.ClubRepository(), inMemorySetup.PersonRepository(), inMemorySetup.DogRepository());
+        //    var sut = new ClubService(inMemorySetup.ClubRepository(), inMemorySetup.PersonRepository(), inMemorySetup.DogRepository());
 
-            var results = sut.Create(newClub).Result;
+        //    var results = sut.Create(newClub).Result;
 
-            results.NafaClubNumber.ShouldBe(newClub.NafaClubNumber);
-            results.Name.ShouldBe(newClub.Name);
-        }
+        //    results.NafaClubNumber.ShouldBe(newClub.NafaClubNumber);
+        //    results.Name.ShouldBe(newClub.Name);
+        //}
 
         //THESE TEST NEED TO MOVE
 

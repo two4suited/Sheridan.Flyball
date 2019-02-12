@@ -10,53 +10,61 @@ using Xunit;
 
 namespace Sheridan.Flyball.Tests.Integration.Data
 {
-    public class ClubTest : IClassFixture<DatabaseFixture>
+    public class ClubTest : IClassFixture<InMemoryDbFixture>
     {
         private IClubRepository _clubRepository;
-        private DatabaseFixture _fixture;
+        private InMemoryDbFixture _fixture;
 
-        public ClubTest(DatabaseFixture fixture)
+        public ClubTest(InMemoryDbFixture fixture) 
         {
             _fixture = fixture;
             
             _clubRepository = _fixture.ClubRepository();
         }
 
-       
-        //[Fact]
-        //public void GetPeople_ClubNotFound_ReturnNull()
-        //{
-        //    var people = _clubRepository.GetPeople(1).Result;
+        //GetPeople
+        //-Invalid Club Return null
+        //-No dogs return empty list
+        //-Has Dog Returns right count
 
-        //    people.ShouldBeNull();
-        //}
-
-        //[Fact]
-        //public void GetPeople_ClubFoundNoPeople_ReturnBlankPeople()
-        //{
-        //    var club = ModelSetup.SetupClubWithNoPeople();
-        //    var people = _clubRepository.GetPeople(club.Id).Result;
-
-        //    people.Count.ShouldBe(0);
-        //}
-
-        //[Fact]
-        //public void GetPeople_ClubFoundPeople_ReturnPeople()
-        //{
-         
-        //    var club = ModelSetup.SetupClubWithPeople();
-       
-        //    var people = _clubRepository.GetPeople(club.Id).Result;
-
-        //    people.Count.ShouldBeGreaterThanOrEqualTo(1);
-        //}
+        //GetTeamsFastestTime
+        //-No Time returns null
+        //-Returns Lowest Time
 
 
+        [Fact]
+        public void GetDogs_ClubNotFound_ReturnNull()
+        {
+            var dogs = _clubRepository.GetDogs(1).Result;
 
+            dogs.ShouldBeNull();
+        }
 
+        [Fact]
+        public void GetDogs_ClubFoundNoDogs_ReturnEmptyList()
+        {
+            var club = ModelSetup.SetupClubWithNoPeople();
+            var dogs = _clubRepository.GetDogs(club.Id).Result;
 
+            dogs.Count.ShouldBe(0);
+        }
 
+        [Theory]
+        [InlineAutoData()]
+        public void GetDogs_ClubHasDogs_ReturnCountOfDogs(Dog dog1, Dog dog2)
+        {
+            var p = ModelSetup.SetupPerson(100);
+            var person = _fixture.Context.People.Where(x => x.Id == p.Id);
+            dog1.PersonId = p.Id;
+            dog2.PersonId = p.Id;
 
+            _fixture.Context.Dogs.Add(dog1);
+            _fixture.Context.Dogs.Add(dog2);
+            _fixture.Context.SaveChanges();
 
+            var sut = _clubRepository.GetDogs(100).Result;
+
+            sut.Count.ShouldBe(2);
+        }
     }
 }

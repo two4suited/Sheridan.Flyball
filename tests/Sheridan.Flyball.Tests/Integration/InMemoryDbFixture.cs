@@ -9,16 +9,17 @@ using Sheridan.Flyball.Data.EFCore.Repositories;
 
 namespace Sheridan.Flyball.Tests.Integration
 {
-    public class InMemoryDbSetup
+    public class InMemoryDbFixture : IDisposable
     {
         public  FlyballDbContext Context;
-        public InMemoryDbSetup(string dbName)
+        public InMemoryDbFixture()
         {
             var options = new DbContextOptionsBuilder<FlyballDbContext>()
-                .UseInMemoryDatabase(databaseName: dbName)
+                .UseInMemoryDatabase(databaseName:"InMemoryTesting")
                 .Options;
 
             Context = new FlyballDbContext(options);
+            SeedData.PopulateTestData(Context);
 
             Context.Database.EnsureCreated();
         }
@@ -38,25 +39,10 @@ namespace Sheridan.Flyball.Tests.Integration
             return new DogRepository(Context);
         }
 
-        public Club SetupClub()
-        {
-            return new Club()
-            {
-                Id = 1,
-                NafaClubNumber = 20,
-                Name = "Rip It Up",
-            };
-        }
 
-        public Person SetupPerson(int clubId)
+        public void Dispose()
         {
-            return new Person()
-            {
-                ClubId = clubId,
-                Id = 1,
-                FirstName = "FirstName",
-                LastName = "LastName"
-            };
+            Context.Dispose();
         }
     }
 }

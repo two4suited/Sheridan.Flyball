@@ -24,9 +24,12 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
         
         public async Task<IList<Dog>> GetDogs(int clubId)
         {
+            if (GetById(clubId) == null) return null;
+
             var dogs = from c in _dbContext.Clubs
                 join p in _dbContext.People on c.Id equals p.ClubId
                 join d in _dbContext.Dogs on p.Id equals d.PersonId
+                       where c.Id == clubId
                 select d;
 
             return await dogs.ToListAsync();
