@@ -7,6 +7,7 @@ namespace Sheridan.Flyball.Tests.Integration
     {
         public static void PopulateTestData(FlyballDbContext context)
         {   
+            Sheridan.Flyball.Data.EFCore.SeedData.PopulateData(context);
             context.Clubs.Add(ModelSetup.SetupClubWithPeople());
             context.Clubs.Add(ModelSetup.SetupClubWithNoPeople());
 

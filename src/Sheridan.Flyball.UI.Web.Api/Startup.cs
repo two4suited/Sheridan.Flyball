@@ -17,6 +17,7 @@ using Sheridan.Flyball.Core.Interfaces.Repository;
 using Sheridan.Flyball.Core.Interfaces.Services;
 using Sheridan.Flyball.Core.ViewModels.Validators;
 using Sheridan.Flyball.Core.ViewModels.Validators.Create;
+using Sheridan.Flyball.Data.EFCore;
 using Sheridan.Flyball.Data.EFCore.Repositories;
 using Sheridan.Flyball.Service;
 using Sheridan.Flyball.UI.Web.Api.Configuration;

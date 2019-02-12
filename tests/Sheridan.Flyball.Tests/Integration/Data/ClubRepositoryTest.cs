@@ -53,7 +53,7 @@ namespace Sheridan.Flyball.Tests.Integration.Data
         [InlineAutoData()]
         public void GetDogs_ClubHasDogs_ReturnCountOfDogs(Dog dog1, Dog dog2)
         {
-            var p = ModelSetup.SetupPerson(100);
+            var p = ModelSetup.SetupPerson(100,100);
             var person = _fixture.Context.People.Where(x => x.Id == p.Id);
             dog1.PersonId = p.Id;
             dog2.PersonId = p.Id;

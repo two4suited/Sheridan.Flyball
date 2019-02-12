@@ -1,9 +1,8 @@
 ﻿using System.Linq;
-using Remotion.Linq.Clauses;
-using Sheridan.Core.Enumerations;
+using FlyballStatTracker.Data.EfCore;
 using Sheridan.Flyball.Core.Enumerations;
 
-namespace FlyballStatTracker.Data.EfCore
+namespace Sheridan.Flyball.Data.EFCore
 {
     public class SeedData
     {
