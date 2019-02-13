@@ -113,6 +113,23 @@ namespace Sheridan.Flyball.Tests
             StartDate = new DateTime(DateTime.Now.AddYears(-1).Year, 11, 1)
         };
 
+        public static Tournament KingsTournament => new Tournament()
+            {Id = 100, StartDate = CurrentRaceYear.StartDate.AddMonths(3), TournamentNumber = 100};
+
+        public static Division Regular1 => new Division()
+            {Id = 100, BreakOutTime = null, Name = "Regular 1", RacingClass = RacingClass.Regular};
+
+        public static Division Regular2 => new Division()
+            { Id = 102, BreakOutTime = 18.00, Name = "Regular 2", RacingClass = RacingClass.Regular };
+
+        public static Division Open1 => new Division()
+            { Id = 101, BreakOutTime = null, Name = "Open 1", RacingClass = RacingClass.Open };
+
+        public static Division Open2 => new Division()
+            { Id = 104, BreakOutTime = 19.00, Name = "Open 2", RacingClass = RacingClass.Open };
+
+
+
         public static Race Race1LeftSide => new Race() {Id = 100, LaneSide = LaneSide.Left, RaceNumber = 1};
 
     }
