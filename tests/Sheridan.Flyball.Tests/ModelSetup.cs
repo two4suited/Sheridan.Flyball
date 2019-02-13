@@ -99,7 +99,10 @@ namespace Sheridan.Flyball.Tests
             return team;
         }
 
-        public Race Race1LeftSide => new Race() {Id = 100, LaneSide = LaneSide.Left, RaceNumber = 1};
+        public static Club RipItUp => new Club() {Id = 100, NafaClubNumber = 100, Name = "RipItUp"};
+        public static Person BrianSheridan => new Person() {Id = 100,ClubId = RipItUp.Id, FirstName = "Brian", LastName = "Sheridan"};
+
+        public static Race Race1LeftSide => new Race() {Id = 100, LaneSide = LaneSide.Left, RaceNumber = 1};
 
     }
 }

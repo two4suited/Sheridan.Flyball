@@ -20,6 +20,10 @@ namespace Sheridan.Flyball.Tests.Integration.Data
             _fixture = fixture;
             
             _clubRepository = _fixture.ClubRepository();
+
+            _fixture.Context.Clubs.Add(ModelSetup.RipItUp);
+
+            _fixture.Context.SaveChanges();
         }
 
         //GetPeople
@@ -43,7 +47,7 @@ namespace Sheridan.Flyball.Tests.Integration.Data
         [Fact]
         public void GetDogs_ClubFoundNoDogs_ReturnEmptyList()
         {
-            var club = ModelSetup.SetupClubWithNoPeople();
+            var club = ModelSetup.RipItUp;
             var dogs = _clubRepository.GetDogs(club.Id).Result;
 
             dogs.Count.ShouldBe(0);
@@ -53,10 +57,14 @@ namespace Sheridan.Flyball.Tests.Integration.Data
         [InlineAutoData()]
         public void GetDogs_ClubHasDogs_ReturnCountOfDogs(Dog dog1, Dog dog2)
         {
-            var p = ModelSetup.SetupPerson(100,100);
-            var person = _fixture.Context.People.Single(x => x.Id == p.Id);
-            dog1.PersonId = p.Id;
-            dog2.PersonId = p.Id;
+
+            var club = _fixture.Context.Clubs.Single(x => x.Id == ModelSetup.RipItUp.Id);
+            club.AddPerson(ModelSetup.BrianSheridan);
+            _fixture.Context.SaveChanges();
+
+            var person = _fixture.Context.People.Single(x => x.Id == ModelSetup.BrianSheridan.Id);
+            dog1.PersonId = person.Id;
+            dog2.PersonId = person.Id;
 
             person.AddDog(dog1);
             person.AddDog(dog2);

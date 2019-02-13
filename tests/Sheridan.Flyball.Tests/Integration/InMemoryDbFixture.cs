@@ -19,7 +19,7 @@ namespace Sheridan.Flyball.Tests.Integration
                 .Options;
 
             Context = new FlyballDbContext(options);
-            SeedData.PopulateTestData(Context);
+           // SeedData.PopulateTestData(Context);
 
             Context.Database.EnsureCreated();
         }
