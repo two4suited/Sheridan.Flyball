@@ -106,6 +106,16 @@ namespace Sheridan.Flyball.Tests
         public static Dog Decibel => new Dog() { Id = 102, PersonId = BrianSheridan.Id, NafaCrn = "100038" };
         public static Dog Lucy => new Dog() { Id = 103, PersonId = BrianSheridan.Id, NafaCrn = "100039" };
 
+        public static Club TestClub => new Club() {Id = 101, Name = "Test Club", NafaClubNumber = 101};
+
+        public static Person DonaldTrump => new Person()
+            {Id = 101, ClubId = TestClub.Id, FirstName = "Donald", LastName = "Trump"};
+
+        public static Dog Snoopy => new Dog() { Id = 200, PersonId = DonaldTrump.Id, NafaCrn = "100000" };
+        public static Dog Pluto => new Dog() { Id = 201, PersonId = DonaldTrump.Id, NafaCrn = "100001" };
+        public static Dog Jack => new Dog() { Id = 202, PersonId = DonaldTrump.Id, NafaCrn = "100002" };
+        public static Dog Lassie => new Dog() { Id = 203, PersonId = DonaldTrump.Id, NafaCrn = "100003" };
+
         public static RaceYear CurrentRaceYear => new RaceYear()
         {
             Id = 100,
