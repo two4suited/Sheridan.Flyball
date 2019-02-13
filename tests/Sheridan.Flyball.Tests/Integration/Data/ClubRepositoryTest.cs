@@ -10,22 +10,8 @@ using Xunit;
 
 namespace Sheridan.Flyball.Tests.Integration.Data
 {
-    public class ClubTest : IClassFixture<InMemoryDbFixture>
-    {
-        private IClubRepository _clubRepository;
-        private InMemoryDbFixture _fixture;
-
-        public ClubTest(InMemoryDbFixture fixture) 
-        {
-            _fixture = fixture;
-            
-            _clubRepository = _fixture.ClubRepository();
-
-            _fixture.Context.Clubs.Add(ModelSetup.RipItUp);
-
-            _fixture.Context.SaveChanges();
-        }
-
+    public class ClubTest
+    { 
         //GetPeople
         //-Invalid Club Return null
         //-No dogs return empty list
@@ -39,7 +25,11 @@ namespace Sheridan.Flyball.Tests.Integration.Data
         [Fact]
         public void GetDogs_ClubNotFound_ReturnNull()
         {
-            var dogs = _clubRepository.GetDogs(1).Result;
+            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            var context = InMemoryDbSetup.GetContext(methodName);
+            var clubRepository = InMemoryDbSetup.ClubRepository(context);
+
+            var dogs = clubRepository.GetDogs(1).Result;
 
             dogs.ShouldBeNull();
         }
@@ -47,32 +37,37 @@ namespace Sheridan.Flyball.Tests.Integration.Data
         [Fact]
         public void GetDogs_ClubFoundNoDogs_ReturnEmptyList()
         {
-            var club = ModelSetup.RipItUp;
-            var dogs = _clubRepository.GetDogs(club.Id).Result;
+            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            var context = InMemoryDbSetup.GetContext(methodName);
+            var clubRepository = InMemoryDbSetup.ClubRepository(context);
+
+            context.Clubs.Add(ModelSetup.RipItUp);
+            context.SaveChanges();
+            
+            var dogs = clubRepository.GetDogs(ModelSetup.RipItUp.Id).Result;
 
             dogs.Count.ShouldBe(0);
         }
 
-        [Theory]
-        [InlineAutoData()]
-        public void GetDogs_ClubHasDogs_ReturnCountOfDogs(Dog dog1, Dog dog2)
+        [Fact]
+        public void GetDogs_ClubHasDogs_ReturnCountOfDogs()
         {
+            var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+            var context = InMemoryDbSetup.GetContext(methodName);
+            var clubRepository = InMemoryDbSetup.ClubRepository(context);
 
-            var club = _fixture.Context.Clubs.Single(x => x.Id == ModelSetup.RipItUp.Id);
-            club.AddPerson(ModelSetup.BrianSheridan);
-            _fixture.Context.SaveChanges();
+            var club = ModelSetup.RipItUp;
+            var person = ModelSetup.BrianSheridan;
 
-            var person = _fixture.Context.People.Single(x => x.Id == ModelSetup.BrianSheridan.Id);
-            dog1.PersonId = person.Id;
-            dog2.PersonId = person.Id;
+            person.AddDog(ModelSetup.Bree);
+            person.AddDog(ModelSetup.Decibel);
+            club.AddPerson(person);
+           
 
-            person.AddDog(dog1);
-            person.AddDog(dog2);
-
-            _fixture.Context.People.Update(person);
-            _fixture.Context.SaveChanges();
-
-            var sut = _clubRepository.GetDogs(100).Result;
+            context.Clubs.Add(club);
+            context.SaveChanges();
+            
+            var sut = clubRepository.GetDogs(ModelSetup.RipItUp.Id).Result;
 
             sut.Count.ShouldBe(2);
         }

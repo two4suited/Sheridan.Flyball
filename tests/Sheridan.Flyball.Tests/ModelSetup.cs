@@ -101,6 +101,17 @@ namespace Sheridan.Flyball.Tests
 
         public static Club RipItUp => new Club() {Id = 100, NafaClubNumber = 100, Name = "RipItUp"};
         public static Person BrianSheridan => new Person() {Id = 100,ClubId = RipItUp.Id, FirstName = "Brian", LastName = "Sheridan"};
+        public static Dog Bree => new Dog() {Id = 100, PersonId = BrianSheridan.Id, NafaCrn = "100036"};
+        public static Dog Maggie => new Dog() { Id = 101, PersonId = BrianSheridan.Id, NafaCrn = "100037" };
+        public static Dog Decibel => new Dog() { Id = 102, PersonId = BrianSheridan.Id, NafaCrn = "100038" };
+        public static Dog Lucy => new Dog() { Id = 103, PersonId = BrianSheridan.Id, NafaCrn = "100039" };
+
+        public static RaceYear CurrentRaceYear => new RaceYear()
+        {
+            Id = 100,
+            EndDate = new DateTime(DateTime.Today.Year, 10, 31),
+            StartDate = new DateTime(DateTime.Now.AddYears(-1).Year, 11, 1)
+        };
 
         public static Race Race1LeftSide => new Race() {Id = 100, LaneSide = LaneSide.Left, RaceNumber = 1};
 
