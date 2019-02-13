@@ -238,7 +238,7 @@ namespace Sheridan.Flyball.Tests.Core
 
             heat.AddDogToLineup(division,dog1, dog2, dog3, dog4);
 
-            heat.Lineup.Count.ShouldBe(5);
+            heat.Lineup.ToList().Count.ShouldBe(5);
         }
         [Theory, InlineAutoData()]
         public void SetLineup_AddFourDogsAndRegular_ThenSixSpots(Dog dog1, Dog dog2, Dog dog3, Dog dog4, Division division)
@@ -248,7 +248,7 @@ namespace Sheridan.Flyball.Tests.Core
 
             heat.AddDogToLineup(division, dog1, dog2, dog3, dog4);
 
-            heat.Lineup.Count.ShouldBe(6);
+            heat.Lineup.ToList().Count.ShouldBe(6);
         }
 
         [Theory, InlineAutoData()]
@@ -271,7 +271,7 @@ namespace Sheridan.Flyball.Tests.Core
 
             heat.AddDogToLineup(division,dog1);
 
-            heat.Lineup.Count.ShouldBe(2);
+            heat.Lineup.ToList().Count.ShouldBe(2);
         }
         [Theory, InlineAutoData()]
         public void SetLineup_AddOneDogsAndRegular_ThenThreeSpots(Dog dog1, Division division)
@@ -281,7 +281,7 @@ namespace Sheridan.Flyball.Tests.Core
 
             heat.AddDogToLineup(division,dog1);
 
-            heat.Lineup.Count.ShouldBe(3);
+            heat.Lineup.ToList().Count.ShouldBe(3);
         }
 
         [Theory, InlineAutoData()]
@@ -307,7 +307,7 @@ namespace Sheridan.Flyball.Tests.Core
 
             heat.AddDogToLineup(division,dog1, dog2);
 
-            heat.Lineup.Count.ShouldBe(3);
+            heat.Lineup.ToList().Count.ShouldBe(3);
 
         }
         [Theory, InlineAutoData()]
@@ -318,7 +318,7 @@ namespace Sheridan.Flyball.Tests.Core
 
             heat.AddDogToLineup(division,dog1, dog2);
 
-            heat.Lineup.Count.ShouldBe(4);
+            heat.Lineup.ToList().Count.ShouldBe(4);
 
         }
 

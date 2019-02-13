@@ -18,7 +18,7 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
 
         public IList<Dog> GetListOfDogs(int teamId)
         {
-            return _dbContext.Teams.Single(x => x.Id==teamId).Dogs;
+            return _dbContext.Teams.Single(x => x.Id==teamId).Dogs.ToList();
         }
 
         public IList<Race> GetListOfRaces(int teamId)

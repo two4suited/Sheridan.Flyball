@@ -54,12 +54,14 @@ namespace Sheridan.Flyball.Tests.Integration.Data
         public void GetDogs_ClubHasDogs_ReturnCountOfDogs(Dog dog1, Dog dog2)
         {
             var p = ModelSetup.SetupPerson(100,100);
-            var person = _fixture.Context.People.Where(x => x.Id == p.Id);
+            var person = _fixture.Context.People.Single(x => x.Id == p.Id);
             dog1.PersonId = p.Id;
             dog2.PersonId = p.Id;
 
-            _fixture.Context.Dogs.Add(dog1);
-            _fixture.Context.Dogs.Add(dog2);
+            person.AddDog(dog1);
+            person.AddDog(dog2);
+
+            _fixture.Context.People.Update(person);
             _fixture.Context.SaveChanges();
 
             var sut = _clubRepository.GetDogs(100).Result;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Sheridan.Core.Models;
 using Sheridan.Flyball.Core.Enumerations;
 
@@ -8,16 +9,17 @@ namespace Sheridan.Flyball.Core.Entities
     {
         public Division()
         {
-           Teams = new List<Team>();
+          
         }
         public string Name { get; set; }
         public double? BreakOutTime { get; set; }
         public RacingClass RacingClass { get; set; }
-        public List<Team> Teams { get; set; }
-
+        private readonly List<Team> _teams = new List<Team>();
+        public IEnumerable<Team> Teams => new ReadOnlyCollection<Team>(_teams);
+     
         public void AddTeam(Team team)
         {
-            Teams.Add(team);
+            _teams.Add(team);
         }
 
         public bool ReRunStart()

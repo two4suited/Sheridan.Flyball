@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Sheridan.Core.Models;
 using Sheridan.Flyball.Core.Enumerations;
 
@@ -6,14 +7,14 @@ namespace Sheridan.Flyball.Core.Entities
 {
     public class Race: BaseEntityInt
     {
-        public Race()
-        {
-            Heats = new List<Heat>();
+        public Race(){
+           
         }
 
         public int RaceNumber { get; set; }
         public LaneSide LaneSide { get; set; }
-        public IList<Heat> Heats { get; set; }
+        private readonly List<Heat> _heats = new List<Heat>();
+        public IEnumerable<Heat> Heats => new ReadOnlyCollection<Heat>(_heats);
         public Team Team { get; set; }
 
 
@@ -24,7 +25,7 @@ namespace Sheridan.Flyball.Core.Entities
 
         public void AddHeat(Heat heat)
         {
-            Heats.Add(heat);
+            _heats.Add(heat);
         }
 
     }

@@ -19,7 +19,7 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
 
         public IList<Division> GetDivisions(int tournamentId)
         {
-            return _dbContext.Tournaments.Single(x => x.Id == tournamentId).Divisions;
+            return _dbContext.Tournaments.Single(x => x.Id == tournamentId).Divisions.ToList();
         }
 
         public IList<Race> GetListOfRacesInOrder(int tournamentId)
@@ -29,7 +29,7 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
 
         public IList<Team> GetListOfTeams(int tournamentId)
         {
-            return _dbContext.Tournaments.Single(x => x.Id == tournamentId).Teams;
+            return _dbContext.Tournaments.Single(x => x.Id == tournamentId).Teams.ToList();
         }
 
         public int GetDogsPoints(int tournamentId)

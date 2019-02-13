@@ -19,7 +19,7 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
 
         public IList<Team> GetTeamsInDivision(int divisionId)
         {
-            return _dbContext.Divisions.Include(x => x.Teams).Single(x => x.Id == divisionId).Teams;
+            return _dbContext.Divisions.Include(x => x.Teams).Single(x => x.Id == divisionId).Teams.ToList();
         }
     }
 }

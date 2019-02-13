@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using Sheridan.Flyball.Core.Entities;
+using Sheridan.Flyball.Core.Enumerations;
 
 namespace Sheridan.Flyball.Tests
 {
     public class ModelSetup
     {
+
+
+
         public static Club SetupClubWithNoPeople()
         {
             return new Club()
@@ -62,12 +66,40 @@ namespace Sheridan.Flyball.Tests
             };
         }
 
+        public static Tournament SetupTournament()
+        {
+            var tournament= new Tournament()
+            {
+               Id= 100,
+               StartDate = SetupRaceYear().StartDate.AddMonths(3),
+               TournamentNumber = 100
+            };
+            return tournament;
+        }
 
+        public static Division SetupDivision()
+        {
+            return new Division()
+            {
+                Id = 100,
+                RacingClass = RacingClass.Regular,
+                Name = "Regular 1",
+                BreakOutTime = 18.00
+            };
+        }
 
+        public static Team SetupTeam()
+        {
+            var team = new Team()
+            {
+                Id = 100,
+                SeedTime = 19.00
+            };
 
+            return team;
+        }
 
+        public Race Race1LeftSide => new Race() {Id = 100, LaneSide = LaneSide.Left, RaceNumber = 1};
 
-
-        
     }
 }

@@ -32,7 +32,7 @@ namespace Sheridan.Flyball.Tests.Core
         [InlineAutoData()]
         public void AddRace_ThenRaceAdded(Tournament tournament, Race race)
         {
-            tournament.Races.Clear();
+            tournament.Races.ToList().Clear();
             tournament.AddRace(race);
 
             tournament.Races.Count().ShouldBe(1);

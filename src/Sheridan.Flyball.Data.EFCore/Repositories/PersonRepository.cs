@@ -21,7 +21,7 @@ namespace Sheridan.Flyball.Data.EFCore.Repositories
         public async Task<IList<Dog>> GetListOfDogs(int personId)
         {
             var t = await _dbContext.People.Include(x => x.Dogs).SingleAsync(x => x.Id == personId);
-            return t.Dogs;
+            return t.Dogs.ToList();
         }
 
         public async Task<IList<Person>> GetPeopleOnClub(int clubId)

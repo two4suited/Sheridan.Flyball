@@ -1,4 +1,5 @@
-﻿using AutoFixture.Xunit2;
+﻿using System.Linq;
+using AutoFixture.Xunit2;
 using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Enumerations;
 using Shouldly;
@@ -33,10 +34,10 @@ namespace Sheridan.Flyball.Tests.Core
         [InlineAutoData()]
         public void AddHeat_ShouldBeOne(Race race, Heat heat)
         {
-            race.Heats.Clear();
+            race.Heats.ToList().Clear();
             race.AddHeat(heat);
 
-            race.Heats.Count.ShouldBe(1);
+            race.Heats.ToList().Count.ShouldBe(1);
         }
         //Set Lane Side
         //Get Heats

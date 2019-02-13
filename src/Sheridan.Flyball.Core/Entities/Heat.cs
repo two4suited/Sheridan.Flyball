@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Sheridan.Core.Models;
 using Sheridan.Flyball.Core.Enumerations;
@@ -8,15 +9,13 @@ namespace Sheridan.Flyball.Core.Entities
     public class Heat : BaseEntityInt
     {
 
-        public Heat()
-        {
-            DogRuns = new List<DogRun>();
-            Lineup = new List<DogPosition>();
-           
-        }
         public int HeatNumber { get; set; }
-        public IList<DogPosition> Lineup { get; set; }
-        public IList<DogRun> DogRuns { get; set; }
+        private readonly List<DogPosition> _lineup = new List<DogPosition>();
+        public IEnumerable<DogPosition> Lineup => new ReadOnlyCollection<DogPosition>(_lineup);
+
+        private readonly List<DogRun> _dogRuns = new List<DogRun>();
+        public IEnumerable<DogRun> DogRuns => new ReadOnlyCollection<DogRun>(_dogRuns);
+
         public double HeatTime { get; set; }
         public Outcome Outcome { get; set; }
 
@@ -34,9 +33,9 @@ namespace Sheridan.Flyball.Core.Entities
 
         public DogRun AddTime(Dog dog, Position position, double time, Fault fault,Division division)
         {
-            DogRuns.Add(new DogRun(position, dog, time, fault));
+            _dogRuns.Add(new DogRun(position, dog, time, fault));
 
-            if ((position.Id == Lineup.Count) || (!division.ReRunStart()) && position.Id-1 == Lineup.Count)
+            if ((position.Id == _lineup.Count) || (!division.ReRunStart()) && position.Id-1 == _lineup.Count)
             {
                 return null;
             }
@@ -82,26 +81,26 @@ namespace Sheridan.Flyball.Core.Entities
         {
             if (dogs.Length > 0)
             {
-                Lineup.Add(new DogPosition(Position.Start, dogs[0]));
+                _lineup.Add(new DogPosition(Position.Start, dogs[0]));
                 if (division.ReRunStart())
                 {
-                    Lineup.Add(new DogPosition(Position.StartReRun, dogs[0]));
+                    _lineup.Add(new DogPosition(Position.StartReRun, dogs[0]));
 
                 }
 
-                Lineup.Add(new DogPosition(Position.First,dogs[0]));
+                _lineup.Add(new DogPosition(Position.First,dogs[0]));
                
             }
 
             if (dogs.Length > 1)
             {
-                Lineup.Add(new DogPosition(Position.Second, dogs[1]));
+                _lineup.Add(new DogPosition(Position.Second, dogs[1]));
             }
 
             if (dogs.Length > 2)
             {
-                Lineup.Add(new DogPosition(Position.Third, dogs[2]));
-                Lineup.Add(new DogPosition(Position.Fourth, dogs[3]));
+                _lineup.Add(new DogPosition(Position.Third, dogs[2]));
+                _lineup.Add(new DogPosition(Position.Fourth, dogs[3]));
             }
         }
 

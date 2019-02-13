@@ -1,22 +1,27 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using Sheridan.Core.Models;
 
 namespace Sheridan.Flyball.Core.Entities
 {
     public class Team : BaseEntityInt
     {
-        public Team()
-        {
-            Dogs = new List<Dog>();
-        }
-       
         public double SeedTime { get; set; }
-        public IList<Dog> Dogs { get; set; }
-        public Club Club { get; set; }
+        private readonly List<Dog> _dogs = new List<Dog>();
+        public IEnumerable<Dog> Dogs => new ReadOnlyCollection<Dog>(_dogs);
+
+        private Club _club;
+        public Club Club => _club;
+      
+        public void AddClub(Club club)
+        {
+            _club = club;
+        }
         
         public void AddDog(Dog dog)
         {
-            Dogs.Add(dog);
+            _dogs.Add(dog);
         }
         
     }
