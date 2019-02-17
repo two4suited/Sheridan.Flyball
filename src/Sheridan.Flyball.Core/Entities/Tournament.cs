@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Sheridan.Core.Models;
 
 namespace Sheridan.Flyball.Core.Entities
@@ -21,10 +22,11 @@ namespace Sheridan.Flyball.Core.Entities
         public IEnumerable<Team> Teams => new ReadOnlyCollection<Team>(_teams);
 
         private readonly List<Race> _races = new List<Race>();
-        public IEnumerable<Race> Races => new ReadOnlyCollection<Race>(_races);
+        public IEnumerable<Race> Races => _races.ToList();
 
         public void AddTeam(Team team)
         {
+            team.TournamentId = this.Id;
             _teams.Add(team);
         }
 
@@ -35,11 +37,13 @@ namespace Sheridan.Flyball.Core.Entities
         
         public void AddRace(Race race)
         {
+            race.TournamentId = this.Id;
             _races.Add(race);
         }
 
         public void AddDivision(Division division)
         {
+            division.TournamentId = this.Id;
             _divisions.Add(division);
         }
     }

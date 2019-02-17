@@ -1,11 +1,7 @@
-﻿using System.Linq;
-using AutoFixture.Xunit2;
-using FlyballStatTracker.Data.EfCore;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoFixture.Xunit2;
 using Sheridan.Flyball.Core.Entities;
-using Sheridan.Flyball.Core.Interfaces.Repository;
-using Sheridan.Flyball.Data.EFCore.Repositories;
 using Shouldly;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Sheridan.Flyball.Tests.Integration.Data
@@ -71,5 +67,26 @@ namespace Sheridan.Flyball.Tests.Integration.Data
 
             sut.Count.ShouldBe(2);
         }
+
+        //[Theory,AutoData]
+        //public void GetTeamsFastestTime_TeamHasTimes_ReturnFastestTime(
+            
+        //    )
+        //{
+        //    var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+        //    var context = InMemoryDbSetup.GetContext(methodName);
+        //    var clubRepository = InMemoryDbSetup.ClubRepository(context);
+
+        //    heat2.HeatTime = 18.00;
+        //    heat1.HeatTime = 19.00;
+
+            
+
+        //    context.Tournaments.Add(tournament);
+
+        //    var time = clubRepository.GetTeamsFastestTime(club.Id);
+
+        //    time.ShouldBe(18.00);
+        //}
     }
 }

@@ -15,6 +15,7 @@ namespace Sheridan.Flyball.Core.Entities
         
         public void AddPerson(Person person)
         {
+            person.ClubId = this.Id;
             _people.Add(person);
         }
 

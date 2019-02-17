@@ -10,6 +10,8 @@ namespace Sheridan.Flyball.Core.Entities
         public double SeedTime { get; set; }
         private readonly List<Dog> _dogs = new List<Dog>();
         public IEnumerable<Dog> Dogs => new ReadOnlyCollection<Dog>(_dogs);
+        public int TournamentId { get; set; }
+        public int DivisionId { get; set; }
 
         private Club _club;
         public Club Club => _club;

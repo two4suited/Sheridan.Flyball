@@ -18,8 +18,8 @@ namespace Sheridan.Flyball.Core.Entities
 
         public double HeatTime { get; set; }
         public Outcome Outcome { get; set; }
+        public int RaceId { get; set; }
 
- 
 
         public DogRun AddStartTime(Dog dog, double time, Fault fault,Division division)
         {

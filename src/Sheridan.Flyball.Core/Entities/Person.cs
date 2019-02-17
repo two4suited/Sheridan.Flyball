@@ -10,10 +10,12 @@ namespace Sheridan.Flyball.Core.Entities
         public string LastName { get; set; }
         private readonly List<Dog> _dogs = new List<Dog>();
         public IEnumerable<Dog> Dogs => new ReadOnlyCollection<Dog>(_dogs);
-
         public int ClubId { get; set; }
+
+
         public void AddDog(Dog dog)
         {
+            dog.PersonId = this.Id;
            _dogs.Add(dog);
         }
 

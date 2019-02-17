@@ -16,6 +16,7 @@ namespace Sheridan.Flyball.Core.Entities
         private readonly List<Heat> _heats = new List<Heat>();
         public IEnumerable<Heat> Heats => new ReadOnlyCollection<Heat>(_heats);
         public Team Team { get; set; }
+        public int TournamentId { get; set; }
 
 
         public override string ToString()
@@ -25,6 +26,7 @@ namespace Sheridan.Flyball.Core.Entities
 
         public void AddHeat(Heat heat)
         {
+            heat.RaceId = this.Id;
             _heats.Add(heat);
         }
 

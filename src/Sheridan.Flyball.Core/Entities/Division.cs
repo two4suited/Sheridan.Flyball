@@ -16,9 +16,11 @@ namespace Sheridan.Flyball.Core.Entities
         public RacingClass RacingClass { get; set; }
         private readonly List<Team> _teams = new List<Team>();
         public IEnumerable<Team> Teams => new ReadOnlyCollection<Team>(_teams);
-     
+        public int TournamentId { get; set; }
+
         public void AddTeam(Team team)
         {
+            team.DivisionId = this.Id;
             _teams.Add(team);
         }
 

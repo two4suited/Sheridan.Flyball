@@ -6,5 +6,6 @@ namespace Sheridan.Flyball.Core.Entities
     {
         public string NafaCrn { get; set; }
         public int PersonId { get; set; }
+
     }
 }
