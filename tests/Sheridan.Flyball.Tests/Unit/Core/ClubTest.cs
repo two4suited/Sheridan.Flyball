@@ -12,10 +12,11 @@ namespace Sheridan.Flyball.Tests.Core
         [InlineAutoData()]
         public void AddPerson_WhenPersonAdded_OnlyOnePersonAdded(Person person)
         {
-            var club = new Club();
+            var club = ModelSetup.RipItUp;
             club.AddPerson(person);
 
             club.People.Count().ShouldBe(1);
+            person.ClubId.ShouldBe(club.Id);
         }
 
        

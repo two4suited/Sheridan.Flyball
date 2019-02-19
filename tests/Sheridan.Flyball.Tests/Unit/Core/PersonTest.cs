@@ -16,6 +16,7 @@ namespace Sheridan.Flyball.Tests.Core
             person.AddDog(dog);
 
             person.Dogs.Count().ShouldBe(1);
+            dog.PersonId.ShouldBe(person.Id);
         }
     }
 }
