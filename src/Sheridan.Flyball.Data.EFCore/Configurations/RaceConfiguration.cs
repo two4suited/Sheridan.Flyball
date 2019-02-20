@@ -9,7 +9,8 @@ namespace Sheridan.Flyball.Data.EFCore.Configurations
         public void Configure(EntityTypeBuilder<Race> builder)
         {
             builder.HasMany(x => x.Heats).WithOne();
-            builder.HasOne(x => x.Team).WithMany();
+            builder.HasOne(x => x.LaneSide).WithMany().IsRequired().OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Team).WithMany().IsRequired().OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

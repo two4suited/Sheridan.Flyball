@@ -9,7 +9,7 @@ namespace Sheridan.Flyball.Data.EFCore.Configurations
         public void Configure(EntityTypeBuilder<Club> builder)
         {
            // builder.HasMany(x => x.Teams).WithOne();
-            builder.HasMany(x => x.People).WithOne();
+            builder.HasMany(x => x.People).WithOne().OnDelete(DeleteBehavior.Restrict); 
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
             builder.Property(x => x.NafaClubNumber).IsRequired();
 

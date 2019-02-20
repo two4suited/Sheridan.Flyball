@@ -8,9 +8,10 @@ namespace Sheridan.Flyball.Data.EFCore.Configurations
     {
         public void Configure(EntityTypeBuilder<Heat> builder)
         {
-            builder.HasMany(x => x.Lineup).WithOne();
-            builder.HasMany(x => x.DogRuns).WithOne();
-            builder.HasOne(x => x.Outcome).WithMany();
+            builder.HasMany(x => x.Lineup).WithOne().OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.DogRuns).WithOne().IsRequired().OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.Lineup).WithOne().IsRequired().OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Outcome).WithMany().IsRequired().OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

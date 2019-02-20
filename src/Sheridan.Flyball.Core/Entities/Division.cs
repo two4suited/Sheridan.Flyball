@@ -20,7 +20,7 @@ namespace Sheridan.Flyball.Core.Entities
 
         public void AddTeam(Team team)
         {
-            team.DivisionId = this.Id;
+          
             _teams.Add(team);
         }
 

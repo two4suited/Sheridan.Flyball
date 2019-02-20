@@ -9,8 +9,9 @@ namespace Sheridan.Flyball.Data.EFCore.Configurations
         public void Configure(EntityTypeBuilder<Person> builder)
         {
             builder.HasMany(x => x.Dogs).WithOne();
-            builder.Property(x => x.FirstName).HasMaxLength(20);
-            builder.Property(x => x.LastName).HasMaxLength(20);
+            builder.Property(x => x.FirstName).HasMaxLength(20).IsRequired();
+            builder.Property(x => x.LastName).HasMaxLength(20).IsRequired();
+            
         }
     }
 }

@@ -8,7 +8,8 @@ namespace Sheridan.Flyball.Data.EFCore.Configurations
     {
         public void Configure(EntityTypeBuilder<Dog> builder)
         {
-            builder.Property(x => x.NafaCrn).HasMaxLength(10);
+            builder.Property(x => x.NafaCrn).HasMaxLength(10).IsRequired();
+
         }
     }
 }

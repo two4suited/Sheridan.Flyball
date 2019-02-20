@@ -16,7 +16,7 @@ namespace Sheridan.Flyball.Data.EFCore.Configurations
                 .IsRequired();
 
             builder.Property(ct => ct.Name)
-                .HasMaxLength(200)
+                .HasMaxLength(4)
                 .IsRequired();
         }
     }

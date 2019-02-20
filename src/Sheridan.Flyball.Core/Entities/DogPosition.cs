@@ -17,7 +17,8 @@ namespace Sheridan.Flyball.Core.Entities
         }
         public Position Position { get; set; }
         public Dog Dog { get; set; }
+        public int HeatId { get; set; }
 
-      
+
     }
 }

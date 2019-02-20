@@ -8,7 +8,9 @@ namespace Sheridan.Flyball.Data.EFCore.Configurations
     {
         public void Configure(EntityTypeBuilder<DogPosition> builder)
         {
-            builder.HasOne(x => x.Dog).WithMany();
+            builder.HasOne(x => x.Dog).WithMany().IsRequired();
+            builder.HasOne(x => x.Position).WithMany().IsRequired().OnDelete(DeleteBehavior.Restrict);
+            //  builder.HasOne(x => x.Heat).WithMany().IsRequired().OnDelete(DeleteBehavior.Restrict);
 
         }
     }

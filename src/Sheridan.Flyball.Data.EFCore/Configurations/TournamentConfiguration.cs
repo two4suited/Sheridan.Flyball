@@ -8,9 +8,10 @@ namespace Sheridan.Flyball.Data.EFCore.Configurations
     {
         public void Configure(EntityTypeBuilder<Tournament> builder)
         {
-            builder.HasMany(x => x.Divisions).WithOne();
-            builder.HasMany(x => x.Teams).WithOne();
-            builder.HasMany(x => x.Races).WithOne();
+            builder.HasMany(x => x.Divisions).WithOne().OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.Teams).WithOne().OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.Races).WithOne().OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.RaceYear).WithMany().IsRequired().OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
