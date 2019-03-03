@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.CognitoIdentityProvider;
+using Amazon.Extensions.CognitoAuthentication;
 using FluentValidation.AspNetCore;
 using FlyballStatTracker.Data.EfCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Sheridan.Flyball.Core.Interfaces.Repository;
 using Sheridan.Flyball.Core.Interfaces.Services;
 using Sheridan.Flyball.Core.ViewModels.Validators;
@@ -38,6 +42,9 @@ namespace Sheridan.Flyball.UI.Web.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppConfig>(Configuration.GetSection("AppConfig"));
+            var serviceProvider = services.BuildServiceProvider();
+            var appConfigOptions = serviceProvider.GetService<IOptions<AppConfig>>();
+
 
             services.AddSwaggerGen(c =>
             {
@@ -61,6 +68,13 @@ namespace Sheridan.Flyball.UI.Web.Api
             services.AddTransient<IRaceYearService, RaceYearService>();
             services.AddTransient<IClubService, ClubService>();
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+             .AddJwtBearer(options =>
+            {
+                options.Audience = appConfigOptions.Value.AppClientId;
+                options.Authority = appConfigOptions.Value.AuthorityURL;
+            });
+
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
@@ -73,12 +87,16 @@ namespace Sheridan.Flyball.UI.Web.Api
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
+            app.UseAuthentication();
+
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Flyball Api V1");
             });
+
+
 
           
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
