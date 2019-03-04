@@ -68,11 +68,11 @@ namespace Sheridan.Flyball.UI.Web.Api
             services.AddTransient<IRaceYearService, RaceYearService>();
             services.AddTransient<IClubService, ClubService>();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication("Bearer")
              .AddJwtBearer(options =>
             {
                 options.Audience = appConfigOptions.Value.AppClientId;
-                options.Authority = appConfigOptions.Value.AuthorityURL;
+                options.Authority = appConfigOptions.Value.AuthorityURL;              
             });
 
 
