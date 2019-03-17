@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28711.60
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{AA3D6F87-D25B-420E-9409-441208B9EEDA}"
 EndProject
@@ -19,11 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{91ECDDB0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sheridan.Flyball.Service", "src\Sheridan.Flyball.Service\Sheridan.Flyball.Service.csproj", "{E0198A35-0DE1-4461-8843-7BA7415504E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheridan.Flyball.Tests", "tests\Sheridan.Flyball.Tests\Sheridan.Flyball.Tests.csproj", "{5F4D0D59-82B3-4205-8489-B63D41CDB4A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sheridan.Flyball.Tests", "tests\Sheridan.Flyball.Tests\Sheridan.Flyball.Tests.csproj", "{5F4D0D59-82B3-4205-8489-B63D41CDB4A6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{F51D5506-6B8A-4BFA-BD92-7BD66F9D0CE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheridan.Flyball.UI.Web.Api", "src\Sheridan.Flyball.UI.Web.Api\Sheridan.Flyball.UI.Web.Api.csproj", "{984BC81E-8D1A-4CB2-BDF7-2D1CD9C4AF3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sheridan.Flyball.UI.Web.Api", "src\Sheridan.Flyball.UI.Web.Api\Sheridan.Flyball.UI.Web.Api.csproj", "{984BC81E-8D1A-4CB2-BDF7-2D1CD9C4AF3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheridan.Flyball.UI.Web", "src\Sheridan.Flyball.UI.Web\Sheridan.Flyball.UI.Web.csproj", "{330193F5-D9A7-4418-A5AA-4D2DE1C1AB74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{984BC81E-8D1A-4CB2-BDF7-2D1CD9C4AF3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{984BC81E-8D1A-4CB2-BDF7-2D1CD9C4AF3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{984BC81E-8D1A-4CB2-BDF7-2D1CD9C4AF3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330193F5-D9A7-4418-A5AA-4D2DE1C1AB74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330193F5-D9A7-4418-A5AA-4D2DE1C1AB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330193F5-D9A7-4418-A5AA-4D2DE1C1AB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330193F5-D9A7-4418-A5AA-4D2DE1C1AB74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{1079D576-BF41-4AA2-9659-56425ED6373C} = {AA3D6F87-D25B-420E-9409-441208B9EEDA}
 		{5F4D0D59-82B3-4205-8489-B63D41CDB4A6} = {91ECDDB0-FB97-4406-830B-1986BB28EE55}
 		{984BC81E-8D1A-4CB2-BDF7-2D1CD9C4AF3B} = {F51D5506-6B8A-4BFA-BD92-7BD66F9D0CE2}
+		{330193F5-D9A7-4418-A5AA-4D2DE1C1AB74} = {F51D5506-6B8A-4BFA-BD92-7BD66F9D0CE2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F1127242-8CBC-4B15-B45D-DC51C1667C44}
