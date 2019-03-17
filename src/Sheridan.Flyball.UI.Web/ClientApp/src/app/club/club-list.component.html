@@ -1,0 +1,23 @@
+<h1>Clubs</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!clubs"><em>Loading...</em></p>
+
+<table class='table table-striped' *ngIf="clubs">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nafa Club Number</th>
+      <th>Name</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let club of clubs">
+      <td>{{ club.id }}</td>
+      <td>{{ club.nafaClubNumber }}</td>
+      <td>{{ club.name }}</td>
+    </tr>
+  </tbody>
+</table>

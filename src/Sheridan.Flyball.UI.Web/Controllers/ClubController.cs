@@ -9,7 +9,7 @@ using Sheridan.Flyball.UI.Web.Configuration;
 
 namespace Sheridan.Flyball.UI.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ClubController : ControllerBase
@@ -27,6 +27,12 @@ namespace Sheridan.Flyball.UI.Web.Controllers
         public async Task<IActionResult> CreateClub(CreateClubModel newClub)
         {
             return new OkObjectResult(await _clubService.Create(newClub));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetClubs()
+        {
+            return new OkObjectResult(await _clubService.All());
         }
                 
         [HttpGet("{id}")]
