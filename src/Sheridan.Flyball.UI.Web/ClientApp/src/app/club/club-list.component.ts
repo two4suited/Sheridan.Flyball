@@ -1,22 +1,17 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import {Club} from './Club';
+import {ClubService} from './club.service';
 
 @Component({
   selector: 'app-club-list',
   templateUrl: './club-list.component.html'
 })
-export class ClubListComponent {
-  public clubs: Clubs[];
+export class ClubListComponent implements OnInit {
+  public clubs: Club[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Clubs[]>(baseUrl + 'api/Club').subscribe(result => {
-      this.clubs = result;
-    }, error => console.error(error));
+  constructor(private clubService: ClubService) {  }
+  ngOnInit() {
+    this.clubService.getClubs().subscribe(clubs => this.clubs = clubs);
   }
 }
 
-interface Clubs {
-  id : number;
-  nafaClubNumber: number;
-  name: string;  
-}

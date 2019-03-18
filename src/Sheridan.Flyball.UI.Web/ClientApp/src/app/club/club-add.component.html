@@ -1,0 +1,22 @@
+<h1>Add Club</h1>
+
+<p>This is the page you will add Flyball Clubs</p>
+
+<form>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" required [(ngModel)]="club.name" name="name" placeholder="Enter Name of Club" #name="ngModel">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">Name is required.</div>
+        </div>
+    </div>    
+    <div class="form-group">
+        <label for="nafaClubNumber">Nafa Club Number</label>
+        <input type="number" class="form-control" id="nafaClubNumber" required [(ngModel)]="club.nafaClubNumber"  placeholder="Enter Nafa Club Number" name="nafaClubNumber" #nafaClubNumber="ngModel">  
+        <div *ngIf="nafaClubNumber.invalid && (nafaClubNumber.dirty || nafaClubNumber.touched)" class="alert alert-danger">
+            <div *ngIf="nafaClubNumber.errors.required">Nafa Club Number is Required.</div>
+        </div>
+    </div>
+<button (click)="addClub()" type="submit" class="btn btn-primary">Add Club</button>
+
+</form>
