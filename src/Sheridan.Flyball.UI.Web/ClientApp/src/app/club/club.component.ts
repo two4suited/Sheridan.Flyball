@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ClubComponent implements OnInit {
-    public bool add = false;
+    public add = false;
 
     constructor() { }
 

@@ -81,7 +81,8 @@ namespace Sheridan.Flyball.Data.EFCore
 
         private static void DevelopmentData(FlyballDbContext context)
         {
-            context.Clubs.Add(RipItUp);
+            var ripItUp = context.Clubs.FirstOrDefault(x => x.NafaClubNumber == 987);
+            if(ripItUp == null) context.Clubs.Add(RipItUp);
         }
 
         private static void RacingClassPopulate(FlyballDbContext context)
