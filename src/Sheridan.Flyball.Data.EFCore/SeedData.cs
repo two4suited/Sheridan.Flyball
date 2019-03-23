@@ -1,20 +1,36 @@
 ﻿using System.Linq;
 using FlyballStatTracker.Data.EfCore;
+using Sheridan.Flyball.Core.Entities;
 using Sheridan.Flyball.Core.Enumerations;
 
 namespace Sheridan.Flyball.Data.EFCore
 {
     public class SeedData
     {
-        public static void PopulateData(FlyballDbContext context)
+        public static void PopulateData(FlyballDbContext context,bool IsDevelopment)
         {
             RacingClassPopulate(context);
             FaultPopulate(context);
             LaneSidePopulate(context);
             PositionPopulate(context);
             OutcomePopulate(context);
+
+            if(IsDevelopment)
+            {
+                DevelopmentData(context);
+            }
             
             context.SaveChanges();
+        }
+
+        private static void DevelopmentData(FlyballDbContext context)
+        {
+            Club RipItUp=  new Club()
+            {
+                NafaClubNumber = 987,
+                Name = "Rip It Up",
+            };
+            context.Clubs.Add(RipItUp);
         }
 
         private static void RacingClassPopulate(FlyballDbContext context)

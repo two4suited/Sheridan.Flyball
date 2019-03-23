@@ -100,7 +100,7 @@ namespace Sheridan.Flyball.UI.Web
                 context.Database.EnsureCreated();
                 //This is failing my tests will have to dig more into it #1
                 //context.Database.Migrate();
-                SeedData.PopulateData(context);
+                SeedData.PopulateData(context,env.IsDevelopment());
             }
 
             if (env.IsDevelopment())
